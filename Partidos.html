@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Elige tus Pronósticos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f2f5f8;
+margin:0;
+padding:20px;
+}
+
+h1{
+text-align:center;
+color:#0047AB;
+margin-bottom:30px;
+}
+
+.tarjeta{
+background:white;
+padding:20px;
+margin:15px auto;
+max-width:650px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.equipos{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+text-align:center;
+}
+
+select{
+width:100%;
+padding:12px;
+font-size:18px;
+border-radius:10px;
+border:2px solid #ddd;
+}
+
+button{
+display:block;
+margin:40px auto;
+padding:18px 45px;
+font-size:22px;
+font-weight:bold;
+background:#FFD700;
+border:none;
+border-radius:40px;
+cursor:pointer;
+}
+
+button:hover{
+background:#FFC107;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>⚽ Elige tus Pronósticos</h1>
+
+<div class="tarjeta">
+<div class="equipos">
+América 🆚 Chivas
+</div>
+
+<select>
+<option>Gana América</option>
+<option>Empate</option>
+<option>Gana Chivas</option>
+</select>
+</div>
+
+<div class="tarjeta">
+<div class="equipos">
+Tigres 🆚 Monterrey
+</div>
+
+<select>
+<option>Gana Tigres</option>
+<option>Empate</option>
+<option>Gana Monterrey</option>
+</select>
+</div>
+
+<div class="tarjeta">
+<div class="equipos">
+Cruz Azul 🆚 Pumas
+</div>
+
+<select>
+<option>Gana Cruz Azul</option>
+<option>Empate</option>
+<option>Gana Pumas</option>
+</select>
+</div>
+
+<button onclick="alert('En el siguiente paso guardaremos tus pronósticos en la base de datos.')">
+Enviar Quiniela
+</button>
+
+</body>
+
+</html>
