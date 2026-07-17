@@ -566,6 +566,50 @@ quinielas.splice(indice,1);
 mostrarQuinielas();
 
 }
+  document.getElementById("enviar").addEventListener("click",()=>{
+
+if(quinielas.length===0){
+
+alert("Primero agrega al menos una quiniela.");
+
+return;
+
+}
+
+let mensaje="🏆 QUINIELAS ROMANO 🏆\n\n";
+
+mensaje+="Participante: "+(localStorage.getItem("nombre")||"Sin nombre")+"\n\n";
+
+quinielas.forEach((q,i)=>{
+
+mensaje+="QUINIELA "+(i+1)+"\n";
+
+for(let j=0;j<9;j++){
+
+mensaje+="P"+(j+1)+": "+q.jugadas[j]+"\n";
+
+}
+
+mensaje+="Valor: "+q.valor+"\n\n";
+
+});
+
+mensaje+="Total de quinielas: "+document.getElementById("totalQuinielas").textContent+"\n";
+
+mensaje+="Total a pagar: "+document.getElementById("totalPago").textContent;
+
+if(confirm("¿Enviar todas las quinielas por WhatsApp?")){
+
+const telefono="529981488824";
+
+window.open(
+"https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje),
+"_blank"
+);
+
+}
+
+});
   </script>
 
 </body>
