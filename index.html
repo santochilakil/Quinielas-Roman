@@ -4,9 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quinielas Cancún</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#005bea,#00c6a7);
+            color:white;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            text-align:center;
+        }
+
+        .contenedor{
+            background:rgba(255,255,255,0.12);
+            padding:40px;
+            border-radius:20px;
+            width:90%;
+            max-width:500px;
+            box-shadow:0 10px 30px rgba(0,0,0,.3);
+        }
+
+        h1{
+            font-size:42px;
+            margin-bottom:15px;
+        }
+
+        p{
+            font-size:20px;
+            margin-bottom:30px;
+            line-height:1.5;
+        }
+
+        .boton{
+            display:inline-block;
+            background:#FFD700;
+            color:#222;
+            padding:15px 35px;
+            border-radius:50px;
+            text-decoration:none;
+            font-size:20px;
+            font-weight:bold;
+            transition:.3s;
+        }
+
+        .boton:hover{
+            transform:scale(1.05);
+            background:#FFC107;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Quinielas Cancún</h1>
-    <p>Pronto podrás elegir tus partidos.</p>
+
+<div class="contenedor">
+
+    <h1>⚽ Quinielas Cancún</h1>
+
+    <p>
+        Demuestra cuánto sabes de fútbol.<br>
+        Pronostica los resultados y compite por el primer lugar.
+    </p>
+
+    <a href="#" class="boton">
+        Comenzar Quiniela
+    </a>
+
+</div>
+
 </body>
 </html>
