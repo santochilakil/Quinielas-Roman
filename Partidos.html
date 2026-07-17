@@ -516,24 +516,56 @@ lista.innerHTML="";
 
 }
 
+mostrarQuinielas();
+
+limpiarSeleccion();
+
+});
+  function mostrarQuinielas(){
+
+const lista=document.getElementById("quinielasGuardadas");
+
+lista.innerHTML="";
+
+if(quinielas.length===0){
+
+lista.innerHTML="<p style='color:#777;text-align:center;'>Aún no has agregado ninguna quiniela.</p>";
+
+actualizarResumen();
+
+return;
+
+}
+
+quinielas.forEach((q,indice)=>{
+
 const div=document.createElement("div");
 
 div.className="item";
 
 div.innerHTML=
-"<b>"+quinielas.length+".</b> "+
-jugadas.join(" - ")+"<br>"+
-"Valor: "+datos.valor+
-" | Dobles: "+datos.dobles+
-" | Triples: "+datos.triples;
+"<b>"+(indice+1)+".</b> "+
+q.jugadas.join(" - ")+"<br>"+
+"Valor: "+q.valor+
+" | Dobles: "+q.dobles+
+" | Triples: "+q.triples+
+"<br><button onclick='eliminarQuiniela("+indice+")'>🗑 Eliminar</button>";
 
 lista.appendChild(div);
 
+});
+
 actualizarResumen();
 
-limpiarSeleccion();
+}
 
-});
+function eliminarQuiniela(indice){
+
+quinielas.splice(indice,1);
+
+mostrarQuinielas();
+
+}
   </script>
 
 </body>
