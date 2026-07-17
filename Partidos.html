@@ -1,67 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Elige tus Pronósticos</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<title>Quinielas Cancún</title>
 
 <style>
 
-body{
-font-family:'Poppins',sans-serif;
-background:#f2f5f8;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef2f7;
 padding:20px;
+padding-bottom:120px;
 }
 
 h1{
 text-align:center;
-color:#0047AB;
-margin-bottom:30px;
+color:#003366;
+margin-bottom:15px;
+}
+
+.resumen{
+position:sticky;
+top:0;
+background:white;
+border-radius:15px;
+padding:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+margin-bottom:20px;
+z-index:100;
+}
+
+.tarjetas{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
 }
 
 .tarjeta{
-background:white;
-padding:20px;
-margin:15px auto;
-max-width:650px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
-
-.equipos{
-font-size:22px;
-font-weight:bold;
-margin-bottom:15px;
+background:#003366;
+color:white;
+border-radius:12px;
+padding:12px;
 text-align:center;
 }
 
-select{
-width:100%;
-padding:12px;
-font-size:18px;
-border-radius:10px;
-border:2px solid #ddd;
+.tarjeta h3{
+font-size:14px;
+margin-bottom:5px;
+}
+
+.tarjeta span{
+font-size:22px;
+font-weight:bold;
+}
+
+.lista{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.partido{
+background:white;
+border-radius:15px;
+padding:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+
+.numero{
+font-size:12px;
+color:#666;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.fila{
+display:grid;
+grid-template-columns:1fr auto 1fr;
+align-items:center;
+gap:10px;
+}
+
+.local{
+text-align:right;
+font-weight:bold;
+}
+
+.visitante{
+text-align:left;
+font-weight:bold;
+}
+
+.botones{
+display:flex;
+gap:8px;
+}
+
+.opcion{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#ddd;
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+cursor:pointer;
+user-select:none;
+transition:.2s;
+}
+
+.opcion.activa{
+background:#00b894;
+color:white;
+}
+
+.acciones{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:white;
+padding:15px;
+display:flex;
+gap:10px;
+box-shadow:0 -3px 12px rgba(0,0,0,.20);
 }
 
 button{
-display:block;
-margin:40px auto;
-padding:18px 45px;
-font-size:22px;
-font-weight:bold;
-background:#FFD700;
+flex:1;
+padding:15px;
 border:none;
-border-radius:40px;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
 cursor:pointer;
 }
 
-button:hover{
-background:#FFC107;
+#limpiar{
+background:#d63031;
+color:white;
+}
+
+#enviar{
+background:#0984e3;
+color:white;
 }
 
 </style>
@@ -70,48 +161,220 @@ background:#FFC107;
 
 <body>
 
-<h1>⚽ Elige tus Pronósticos</h1>
+<h1>⚽ Quinielas Cancún</h1>
+
+<div class="resumen">
+
+<div class="tarjetas">
 
 <div class="tarjeta">
-<div class="equipos">
-América 🆚 Chivas
-</div>
-
-<select>
-<option>Gana América</option>
-<option>Empate</option>
-<option>Gana Chivas</option>
-</select>
+<h3>Quinielas</h3>
+<span id="quinielas">1</span>
 </div>
 
 <div class="tarjeta">
-<div class="equipos">
-Tigres 🆚 Monterrey
-</div>
-
-<select>
-<option>Gana Tigres</option>
-<option>Empate</option>
-<option>Gana Monterrey</option>
-</select>
+<h3>Dobles</h3>
+<span id="dobles">0</span>
 </div>
 
 <div class="tarjeta">
-<div class="equipos">
-Cruz Azul 🆚 Pumas
+<h3>Triples</h3>
+<span id="triples">0</span>
 </div>
 
-<select>
-<option>Gana Cruz Azul</option>
-<option>Empate</option>
-<option>Gana Pumas</option>
-</select>
+<div class="tarjeta">
+<h3>Total</h3>
+<span id="total">$30</span>
 </div>
 
-<button onclick="alert('En el siguiente paso guardaremos tus pronósticos en la base de datos.')">
-Enviar Quiniela
-</button>
+</div>
+
+</div>
+
+<div class="lista">
+<div class="partido">
+<div class="numero">Partido 1</div>
+<div class="fila">
+<div class="local">América</div>
+<div class="botones">
+<div class="opcion" data-partido="1" data-opcion="L">L</div>
+<div class="opcion" data-partido="1" data-opcion="E">E</div>
+<div class="opcion" data-partido="1" data-opcion="V">V</div>
+</div>
+<div class="visitante">Chivas</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 2</div>
+<div class="fila">
+<div class="local">Tigres</div>
+<div class="botones">
+<div class="opcion" data-partido="2" data-opcion="L">L</div>
+<div class="opcion" data-partido="2" data-opcion="E">E</div>
+<div class="opcion" data-partido="2" data-opcion="V">V</div>
+</div>
+<div class="visitante">Pumas</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 3</div>
+<div class="fila">
+<div class="local">Monterrey</div>
+<div class="botones">
+<div class="opcion" data-partido="3" data-opcion="L">L</div>
+<div class="opcion" data-partido="3" data-opcion="E">E</div>
+<div class="opcion" data-partido="3" data-opcion="V">V</div>
+</div>
+<div class="visitante">León</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 4</div>
+<div class="fila">
+<div class="local">Cruz Azul</div>
+<div class="botones">
+<div class="opcion" data-partido="4" data-opcion="L">L</div>
+<div class="opcion" data-partido="4" data-opcion="E">E</div>
+<div class="opcion" data-partido="4" data-opcion="V">V</div>
+</div>
+<div class="visitante">Toluca</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 5</div>
+<div class="fila">
+<div class="local">Atlas</div>
+<div class="botones">
+<div class="opcion" data-partido="5" data-opcion="L">L</div>
+<div class="opcion" data-partido="5" data-opcion="E">E</div>
+<div class="opcion" data-partido="5" data-opcion="V">V</div>
+</div>
+<div class="visitante">Necaxa</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 6</div>
+<div class="fila">
+<div class="local">Pachuca</div>
+<div class="botones">
+<div class="opcion" data-partido="6" data-opcion="L">L</div>
+<div class="opcion" data-partido="6" data-opcion="E">E</div>
+<div class="opcion" data-partido="6" data-opcion="V">V</div>
+</div>
+<div class="visitante">Santos</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 7</div>
+<div class="fila">
+<div class="local">Querétaro</div>
+<div class="botones">
+<div class="opcion" data-partido="7" data-opcion="L">L</div>
+<div class="opcion" data-partido="7" data-opcion="E">E</div>
+<div class="opcion" data-partido="7" data-opcion="V">V</div>
+</div>
+<div class="visitante">Mazatlán</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 8</div>
+<div class="fila">
+<div class="local">Juárez</div>
+<div class="botones">
+<div class="opcion" data-partido="8" data-opcion="L">L</div>
+<div class="opcion" data-partido="8" data-opcion="E">E</div>
+<div class="opcion" data-partido="8" data-opcion="V">V</div>
+</div>
+<div class="visitante">Puebla</div>
+</div>
+</div>
+
+<div class="partido">
+<div class="numero">Partido 9</div>
+<div class="fila">
+<div class="local">Tijuana</div>
+<div class="botones">
+<div class="opcion" data-partido="9" data-opcion="L">L</div>
+<div class="opcion" data-partido="9" data-opcion="E">E</div>
+<div class="opcion" data-partido="9" data-opcion="V">V</div>
+</div>
+<div class="visitante">Atlético San Luis</div>
+</div>
+</div>
+</div>
+
+<div class="acciones">
+<button id="limpiar">Limpiar</button>
+<button id="enviar">Enviar Quiniela</button>
+</div>
+
+<script>
+
+const COSTO=30;
+
+const opciones=document.querySelectorAll(".opcion");
+
+function actualizar(){
+
+let dobles=0;
+let triples=0;
+let quinielas=1;
+
+for(let i=1;i<=9;i++){
+
+const seleccionadas=document.querySelectorAll(
+'.opcion.activa[data-partido="'+i+'"]'
+).length;
+
+if(seleccionadas==2){
+dobles++;
+quinielas*=2;
+}
+
+if(seleccionadas==3){
+triples++;
+quinielas*=3;
+}
+
+}
+
+document.getElementById("dobles").textContent=dobles;
+document.getElementById("triples").textContent=triples;
+document.getElementById("quinielas").textContent=quinielas;
+document.getElementById("total").textContent="$"+(quinielas*COSTO);
+
+}
+
+opciones.forEach(boton=>{
+
+boton.addEventListener("click",()=>{
+
+boton.classList.toggle("activa");
+
+actualizar();
+
+});
+
+});
+
+document.getElementById("limpiar").addEventListener("click",()=>{
+
+document.querySelectorAll(".activa").forEach(x=>x.classList.remove("activa"));
+
+actualizar();
+
+});
+
+actualizar();
+
+</script>
 
 </body>
-
 </html>
