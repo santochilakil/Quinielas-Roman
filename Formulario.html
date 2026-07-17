@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Formulario - Quinielas Cancún</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0047AB,#00B894);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.contenedor{
+background:white;
+padding:40px;
+border-radius:20px;
+width:90%;
+max-width:500px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+text-align:center;
+}
+
+h1{
+color:#0047AB;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:15px;
+font-size:18px;
+border-radius:10px;
+border:2px solid #ccc;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+background:#FFD700;
+border:none;
+border-radius:40px;
+cursor:pointer;
+}
+
+button:hover{
+background:#FFC107;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>Comienza tu Quiniela</h1>
+
+<input
+type="text"
+placeholder="Escribe tu nombre completo"
+id="nombre">
+
+<button onclick="continuar()">
+Continuar
+</button>
+
+</div>
+
+<script>
+
+function continuar(){
+
+let nombre=document.getElementById("nombre").value;
+
+if(nombre==""){
+
+alert("Por favor escribe tu nombre.");
+
+return;
+
+}
+
+alert("¡Bienvenido, "+nombre+"!");
+
+}
+
+</script>
+
+</body>
+
+</html>
