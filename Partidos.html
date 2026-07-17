@@ -16,9 +16,9 @@ font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-background:#eef2f7;
+background:#eef3f8;
 padding:20px;
-padding-bottom:120px;
+padding-bottom:140px;
 }
 
 h1{
@@ -31,9 +31,9 @@ margin-bottom:15px;
 position:sticky;
 top:0;
 background:white;
-border-radius:15px;
 padding:15px;
-box-shadow:0 4px 12px rgba(0,0,0,.15);
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
 margin-bottom:20px;
 z-index:100;
 }
@@ -47,8 +47,8 @@ gap:10px;
 .tarjeta{
 background:#003366;
 color:white;
-border-radius:12px;
 padding:12px;
+border-radius:12px;
 text-align:center;
 }
 
@@ -62,7 +62,7 @@ font-size:22px;
 font-weight:bold;
 }
 
-.lista{
+.listaPartidos{
 display:flex;
 flex-direction:column;
 gap:15px;
@@ -70,16 +70,16 @@ gap:15px;
 
 .partido{
 background:white;
-border-radius:15px;
 padding:15px;
+border-radius:15px;
 box-shadow:0 3px 10px rgba(0,0,0,.10);
 }
 
 .numero{
-font-size:12px;
+font-size:13px;
+font-weight:bold;
 color:#666;
 margin-bottom:10px;
-font-weight:bold;
 }
 
 .fila{
@@ -108,19 +108,45 @@ gap:8px;
 width:42px;
 height:42px;
 border-radius:50%;
-background:#ddd;
+background:#dfe6e9;
 display:flex;
 justify-content:center;
 align-items:center;
 font-weight:bold;
 cursor:pointer;
-user-select:none;
 transition:.2s;
+user-select:none;
 }
 
 .opcion.activa{
 background:#00b894;
 color:white;
+}
+
+#listaQuinielas{
+margin-top:25px;
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+
+#listaQuinielas h2{
+margin-bottom:10px;
+color:#003366;
+}
+
+#quinielasGuardadas{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.item{
+padding:10px;
+background:#f4f7fb;
+border-radius:8px;
+font-size:14px;
 }
 
 .acciones{
@@ -132,7 +158,7 @@ background:white;
 padding:15px;
 display:flex;
 gap:10px;
-box-shadow:0 -3px 12px rgba(0,0,0,.20);
+box-shadow:0 -4px 12px rgba(0,0,0,.20);
 }
 
 button{
@@ -145,8 +171,13 @@ font-weight:bold;
 cursor:pointer;
 }
 
+#agregar{
+background:#27ae60;
+color:white;
+}
+
 #limpiar{
-background:#d63031;
+background:#e74c3c;
 color:white;
 }
 
@@ -169,30 +200,30 @@ color:white;
 
 <div class="tarjeta">
 <h3>Quinielas</h3>
-<span id="quinielas">1</span>
+<span id="totalQuinielas">0</span>
 </div>
 
 <div class="tarjeta">
 <h3>Dobles</h3>
-<span id="dobles">0</span>
+<span id="totalDobles">0</span>
 </div>
 
 <div class="tarjeta">
 <h3>Triples</h3>
-<span id="triples">0</span>
+<span id="totalTriples">0</span>
 </div>
 
 <div class="tarjeta">
 <h3>Total</h3>
-<span id="total">$30</span>
+<span id="totalPago">$0</span>
 </div>
 
 </div>
 
 </div>
 
-<div class="lista">
-<div class="partido">
+<div class="listaPartidos">
+  <div class="partido">
 <div class="numero">Partido 1</div>
 <div class="fila">
 <div class="local">América</div>
@@ -310,71 +341,196 @@ color:white;
 </div>
 </div>
 
+<div id="listaQuinielas">
+
+<h2>Mis Quinielas</h2>
+
+<div id="quinielasGuardadas">
+
+<p style="color:#777;text-align:center;">
+Aún no has agregado ninguna quiniela.
+</p>
+
+</div>
+
+</div>
+
 <div class="acciones">
-<button id="limpiar">Limpiar</button>
-<button id="enviar">Enviar Quiniela</button>
+
+<button id="agregar">
+➕ Agregar
+</button>
+
+<button id="limpiar">
+🧹 Limpiar
+</button>
+
+<button id="enviar">
+📤 Enviar
+</button>
+
 </div>
 
 <script>
 
 const COSTO=30;
 
-const opciones=document.querySelectorAll(".opcion");
+let quinielas=[];
+const botones=document.querySelectorAll(".opcion");
 
-function actualizar(){
-
-let dobles=0;
-let triples=0;
-let quinielas=1;
-
-for(let i=1;i<=9;i++){
-
-const seleccionadas=document.querySelectorAll(
-'.opcion.activa[data-partido="'+i+'"]'
-).length;
-
-if(seleccionadas==2){
-dobles++;
-quinielas*=2;
-}
-
-if(seleccionadas==3){
-triples++;
-quinielas*=3;
-}
-
-}
-
-document.getElementById("dobles").textContent=dobles;
-document.getElementById("triples").textContent=triples;
-document.getElementById("quinielas").textContent=quinielas;
-document.getElementById("total").textContent="$"+(quinielas*COSTO);
-
-}
-
-opciones.forEach(boton=>{
+botones.forEach(boton=>{
 
 boton.addEventListener("click",()=>{
 
 boton.classList.toggle("activa");
 
-actualizar();
-
 });
 
 });
+
+function obtenerSeleccion(partido){
+
+const seleccionadas=document.querySelectorAll(
+'.opcion.activa[data-partido="'+partido+'"]'
+);
+
+let texto="";
+
+seleccionadas.forEach(op=>{
+
+texto+=op.dataset.opcion;
+
+});
+
+return texto;
+
+}
+
+function calcularQuiniela(){
+
+let valor=1;
+let dobles=0;
+let triples=0;
+
+for(let i=1;i<=9;i++){
+
+const seleccion=obtenerSeleccion(i);
+
+if(seleccion.length==2){
+
+valor*=2;
+dobles++;
+
+}
+
+if(seleccion.length==3){
+
+valor*=3;
+triples++;
+
+}
+
+}
+
+return{
+
+valor:valor,
+dobles:dobles,
+triples:triples
+
+};
+
+}
+  function actualizarResumen(){
+
+let totalQuinielas=0;
+let totalDobles=0;
+let totalTriples=0;
+
+quinielas.forEach(q=>{
+
+totalQuinielas+=q.valor;
+totalDobles+=q.dobles;
+totalTriples+=q.triples;
+
+});
+
+document.getElementById("totalQuinielas").textContent=totalQuinielas;
+document.getElementById("totalDobles").textContent=totalDobles;
+document.getElementById("totalTriples").textContent=totalTriples;
+document.getElementById("totalPago").textContent="$"+(totalQuinielas*COSTO);
+
+}
+
+function limpiarSeleccion(){
+
+document.querySelectorAll(".opcion.activa").forEach(op=>{
+
+op.classList.remove("activa");
+
+});
+
+}
 
 document.getElementById("limpiar").addEventListener("click",()=>{
 
-document.querySelectorAll(".activa").forEach(x=>x.classList.remove("activa"));
+limpiarSeleccion();
 
-actualizar();
+});
+  document.getElementById("agregar").addEventListener("click",()=>{
+
+let jugadas=[];
+
+for(let i=1;i<=9;i++){
+
+const seleccion=obtenerSeleccion(i);
+
+if(seleccion==""){
+
+alert("Debes seleccionar al menos una opción en el partido "+i);
+
+return;
+
+}
+
+jugadas.push(seleccion);
+
+}
+
+const datos=calcularQuiniela();
+
+quinielas.push({
+
+jugadas:jugadas,
+valor:datos.valor,
+dobles:datos.dobles,
+triples:datos.triples
 
 });
 
-actualizar();
+const lista=document.getElementById("quinielasGuardadas");
 
-</script>
+if(quinielas.length==1){
 
-</body>
-</html>
+lista.innerHTML="";
+
+}
+
+const div=document.createElement("div");
+
+div.className="item";
+
+div.innerHTML=
+"<b>"+quinielas.length+".</b> "+
+jugadas.join(" - ")+"<br>"+
+"Valor: "+datos.valor+
+" | Dobles: "+datos.dobles+
+" | Triples: "+datos.triples;
+
+lista.appendChild(div);
+
+actualizarResumen();
+
+limpiarSeleccion();
+
+});
