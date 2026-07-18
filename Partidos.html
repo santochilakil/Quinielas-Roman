@@ -219,6 +219,28 @@ height:90px;
 background:white;
 border-radius:10px;
 }
+ .local,
+.visitante{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:bold;
+font-size:16px;
+}
+
+.local{
+justify-content:flex-end;
+}
+
+.visitante{
+justify-content:flex-start;
+}
+
+.escudoMini{
+width:32px;
+height:32px;
+object-fit:contain;
+}
 </style>
 
 </head>
@@ -260,11 +282,35 @@ border-radius:10px;
 
 <div class="numero">Partido 1</div>
 
-<div class="filaNueva">
+<div class="fila">
 
-<div class="equipo">
+<div class="local">
 
-<img src="IMG_5145.png" class="escudo">
+<img src="IMG_5145.png" class="escudoMini">
+
+<span>América</span>
+
+</div>
+
+<div class="botones">
+
+<div class="opcion" data-partido="1" data-opcion="L">L</div>
+<div class="opcion" data-partido="1" data-opcion="E">E</div>
+<div class="opcion" data-partido="1" data-opcion="V">V</div>
+
+</div>
+
+<div class="visitante">
+
+<span>Chivas</span>
+
+<img src="IMG_5144.webp" class="escudoMini">
+
+</div>
+
+</div>
+
+</div>
 
 <div class="nombreEquipo">América</div>
 
