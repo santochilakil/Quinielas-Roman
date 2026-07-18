@@ -262,12 +262,13 @@ margin:0 10px;
 </style>
 
 </head>
-
 <body>
-<h1>
-    <img src="Logo.png" class="logoTitulo" alt="">
-    <span>QUINIELAS CANCÚN</span>
+
+<h1 id="tituloJornada">
+    <img src="Logo.png" class="logoTitulo">
+    QUINIELAS CANCÚN
 </h1>
+
 <div class="resumen">
 
 <div class="tarjetas">
@@ -346,17 +347,24 @@ const escudos = {
   "Tijuana": "tijuana.png.jpeg",
   "Toluca": "toluca.png.png"
 };
- const jornada = [
-  ["Cruz Azul","Puebla"],
-  ["Toluca","Pumas"],
-  ["Tigres","Atlético San Luis"],
-  ["Atlante","América"],
-  ["Tijuana","León"],
-  ["Chivas","FC Juárez"],
-  ["Santos","Atlas"],
-  ["Necaxa","Monterrey"],
-  ["Pachuca","Querétaro"]
-];
+ let jornada = [];
+    fetch("datos/jornada.json")
+.then(res => res.json())
+.then(data => {
+
+    jornada = data.partidos;
+
+    const titulo = document.getElementById("tituloJornada");
+    if (titulo) {
+        titulo.innerHTML = `
+            <img src="Logo.png" class="logoTitulo">
+            QUINIELAS CANCÚN - ${data.titulo}
+        `;
+    }
+
+    cargarJornada();
+
+});
 const COSTO=30;
 
 let quinielas=[];
@@ -421,7 +429,6 @@ activarBotones();
 
 }
 
-cargarJornada();
 function obtenerSeleccion(partido){
 
 const seleccionadas=document.querySelectorAll(
