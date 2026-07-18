@@ -1,1 +1,14 @@
-
+{
+  "titulo": "Jornada 1",
+  "partidos": [
+    ["Cruz Azul","Puebla"],
+    ["Toluca","Pumas"],
+    ["Tigres","Atlético San Luis"],
+    ["Atlante","América"],
+    ["Tijuana","León"],
+    ["Chivas","FC Juárez"],
+    ["Santos","Atlas"],
+    ["Necaxa","Monterrey"],
+    ["Pachuca","Querétaro"]
+  ]
+}
