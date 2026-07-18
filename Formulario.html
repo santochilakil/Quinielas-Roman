@@ -44,10 +44,11 @@ text-align:center;
 }
 
 h1{
-color:#0047AB;
+color:white;
 margin-bottom:25px;
+font-size:42px;
+text-shadow:2px 2px 8px rgba(0,0,0,.6);
 }
-
 input{
 width:100%;
 padding:15px;
@@ -71,19 +72,26 @@ cursor:pointer;
 button:hover{
 background:#FFC107;
 }
+ .logo{
+width:180px;
+height:auto;
+display:block;
+margin-bottom:25px;
+}
 
 </style>
 
 </head>
 
-<body>
- <img src="Logo.png" class="logo" alt="Quinielas Cancún">
- 
-
-<div class="contenedor">
-  
-
-<h1>Comienza tu Quiniela</h1>
+body{
+background:url("A71A3DF2-DE11-4C4E-9A40-F84BF17D8ED2.png") center center/cover no-repeat;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+min-height:100vh;
+padding-top:30px;
+}
 
 <input
 type="text"
