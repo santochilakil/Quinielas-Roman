@@ -185,7 +185,42 @@ background:#25D366;
 color:white;
 }
 
+.filaNueva{
+display:grid;
+grid-template-columns:35% 30% 35%;
+align-items:center;
+}
 
+.equipo{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-end;
+height:140px;
+}
+
+.escudo{
+max-width:90px;
+max-height:90px;
+object-fit:contain;
+margin-bottom:8px;
+}
+
+.nombreEquipo{
+font-weight:bold;
+color:black;
+font-size:15px;
+text-align:center;
+}
+
+.centro{
+display:flex;
+justify-content:center;
+align-items:center;
+height:140px;
+background:white;
+border-radius:10px;
+}
 </style>
 
 </head>
@@ -223,18 +258,41 @@ color:white;
 </div>
 
 <div class="listaPartidos">
-  <div class="partido">
+ <div class="partido">
+
 <div class="numero">Partido 1</div>
-<div class="fila">
-<div class="local">América</div>
+
+<div class="filaNueva">
+
+<div class="equipo">
+
+<img src="escudos/america.png" class="escudo">
+
+<div class="nombreEquipo">América</div>
+
+</div>
+
+<div class="centro">
+
 <div class="botones">
 <div class="opcion" data-partido="1" data-opcion="L">L</div>
 <div class="opcion" data-partido="1" data-opcion="E">E</div>
 <div class="opcion" data-partido="1" data-opcion="V">V</div>
 </div>
-<div class="visitante">Chivas</div>
+
 </div>
+
+<div class="equipo">
+
+<img src="escudos/chivas.png" class="escudo">
+
+<div class="nombreEquipo">Chivas</div>
+
 </div>
+
+</div>
+
+</div> 
 
 <div class="partido">
 <div class="numero">Partido 2</div>
