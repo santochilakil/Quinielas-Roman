@@ -170,21 +170,16 @@ font-size:16px;
 font-weight:bold;
 cursor:pointer;
 }
-
 #agregar{
-background:#27ae60;
-color:white;
-}
-
-#limpiar{
-background:#e74c3c;
+background:#007BFF;
 color:white;
 }
 
 #enviar{
-background:#0984e3;
+background:#25D366;
 color:white;
 }
+
 
 </style>
 
@@ -361,12 +356,12 @@ Aún no has agregado ninguna quiniela.
 ➕ Agregar
 </button>
 
-<button id="limpiar">
-🧹 Limpiar
-</button>
 
 <button id="enviar">
-📤 Enviar
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+width="22"
+style="vertical-align:middle;margin-right:8px;">
+Enviar por WhatsApp
 </button>
 
 </div>
@@ -471,12 +466,6 @@ op.classList.remove("activa");
 });
 
 }
-
-document.getElementById("limpiar").addEventListener("click",()=>{
-
-limpiarSeleccion();
-
-});
   document.getElementById("agregar").addEventListener("click",()=>{
 
 let jugadas=[];
