@@ -331,9 +331,23 @@ const escudos = {
   "Tijuana": "tijuana.png.jpeg",
   "Toluca": "toluca.png.png"
 };
+ const jornada = [
+  ["Cruz Azul","Puebla"],
+  ["Toluca","Pumas"],
+  ["Tigres","Atlético San Luis"],
+  ["Atlante","América"],
+  ["Tijuana","León"],
+  ["Chivas","FC Juárez"],
+  ["Santos","Atlas"],
+  ["Necaxa","Monterrey"],
+  ["Pachuca","Querétaro"]
+];
 const COSTO=30;
 
 let quinielas=[];
+
+function activarBotones(){
+
 const botones=document.querySelectorAll(".opcion");
 
 botones.forEach(boton=>{
@@ -346,6 +360,53 @@ boton.classList.toggle("activa");
 
 });
 
+}
+ function cargarJornada(){
+
+const contenedor=document.getElementById("listaPartidos");
+
+contenedor.innerHTML="";
+
+jornada.forEach((partido,index)=>{
+
+const local=partido[0];
+const visitante=partido[1];
+
+contenedor.innerHTML+=`
+<div class="partido">
+
+<div class="numero">Partido ${index+1}</div>
+
+<div class="fila">
+
+<div class="local">
+<img src="${escudos[local]}" class="escudoMini">
+<span>${local}</span>
+</div>
+
+<div class="botones">
+<div class="opcion" data-partido="${index+1}" data-opcion="L">L</div>
+<div class="opcion" data-partido="${index+1}" data-opcion="E">E</div>
+<div class="opcion" data-partido="${index+1}" data-opcion="V">V</div>
+</div>
+
+<div class="visitante">
+<img src="${escudos[visitante]}" class="escudoMini">
+<span>${visitante}</span>
+</div>
+
+</div>
+
+</div>
+`;
+
+});
+
+activarBotones();
+
+}
+
+cargarJornada();
 function obtenerSeleccion(partido){
 
 const seleccionadas=document.querySelectorAll(
@@ -429,6 +490,7 @@ op.classList.remove("activa");
 });
 
 }
+ cargarJornada();
   document.getElementById("agregar").addEventListener("click",()=>{
 
 let jugadas=[];
