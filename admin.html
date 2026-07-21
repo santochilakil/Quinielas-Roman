@@ -131,7 +131,15 @@ tabla.innerHTML += `
 <td>${d.jornada}</td>
 <td>${d.totalQuinielas}</td>
 <td>${d.totalPago}</td>
-<td>${d.estado || "Pendiente"}</td>
+<td>
+${
+d.estado=="Pagó"
+?"🟢 Pagó"
+:d.estado=="Cancelado"
+?"🔴 Cancelado"
+:"🟡 Pendiente"
+}
+</td>
 <td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
 <td>
 <button onclick="verQuiniela('${id}')">👁️</button>
@@ -168,15 +176,21 @@ document.getElementById("contenidoModal").innerText = mensaje;
 document.getElementById("modal").style.display = "block";
 
 }
-  window.cambiarEstado = async function(id){
+window.cambiarEstado = async function(id){
+
+const documento = await getDoc(doc(db,"quinielas",id));
+const d = documento.data();
+
+const nuevoEstado =
+d.estado=="Pagó"
+? "Pendiente"
+: "Pagó";
 
 await updateDoc(doc(db,"quinielas",id),{
-estado:"Pagó"
+estado:nuevoEstado
 });
 
-alert("✅ Estado actualizado.");
-
-
+location.reload();
 
 }
 </script>
