@@ -497,7 +497,7 @@ let valor=1;
 let dobles=0;
 let triples=0;
 
-for(let i=1;i<=9;i++){
+for(let i=1;i<=10;i++){
 
 const seleccion=obtenerSeleccion(i);
 
@@ -663,12 +663,13 @@ mensaje+="Participante: "+(localStorage.getItem("nombre")||"Sin nombre")+"\n\n";
 quinielas.forEach((q,i)=>{
 
 mensaje+="QUINIELA "+(i+1)+"\n";
-
 for(let j=0;j<9;j++){
 
 mensaje+="P"+(j+1)+": "+q.jugadas[j]+"\n";
 
 }
+
+mensaje+="PS: "+q.jugadas[9]+"\n";
 
 mensaje+="Valor: "+q.valor+"\n\n";
 
