@@ -394,6 +394,22 @@ suplente = data.suplente;
 const COSTO=20;
 
 let quinielas=[];
+    async function guardarEnFirebase(){
+
+  const nombre = localStorage.getItem("nombre") || "Sin nombre";
+
+  await addDoc(collection(db,"quinielas"),{
+
+    nombre: nombre,
+    fecha: serverTimestamp(),
+    jornada: 2,
+    quinielas: quinielas,
+    totalQuinielas: Number(document.getElementById("totalQuinielas").textContent),
+    totalPago: document.getElementById("totalPago").textContent
+
+  });
+
+}
 
 function activarBotones(){
 
