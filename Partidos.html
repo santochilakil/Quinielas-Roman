@@ -351,12 +351,14 @@ const escudos = {
 "Chicago Fire":"chicagofire.png",
 "New York City":"ciudad de Nueva York.png"  
 };
- let jornada = [];
+let jornada = [];
+let suplente = [];
    fetch("/datos/jornada.json")
 .then(res => res.json())
 .then(data => {
 
-    jornada = data.partidos;
+   jornada = data.partidos;
+suplente = data.suplente;
 
     const titulo = document.getElementById("tituloJornada");
     if (titulo) {
@@ -428,7 +430,45 @@ contenedor.innerHTML+=`
 `;
 
 });
+if(suplente && suplente.length===2){
 
+contenedor.innerHTML+=`
+
+<div class="partido">
+
+<div class="numero" style="font-size:16px;color:#003366;font-weight:bold;">
+⭐ PARTIDO SUPLENTE ⭐
+</div>
+
+<div style="text-align:center;font-size:12px;color:#666;margin-bottom:10px;">
+Este partido contará únicamente si alguno de los anteriores es suspendido.
+</div>
+
+<div class="fila">
+
+<div class="local">
+<img src="${escudos[suplente[0]]}" class="escudoMini">
+<span>${suplente[0]}</span>
+</div>
+
+<div class="botones">
+<div class="opcion" data-partido="10" data-opcion="L">L</div>
+<div class="opcion" data-partido="10" data-opcion="E">E</div>
+<div class="opcion" data-partido="10" data-opcion="V">V</div>
+</div>
+
+<div class="visitante">
+<img src="${escudos[suplente[1]]}" class="escudoMini">
+<span>${suplente[1]}</span>
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
 activarBotones();
 
 }
