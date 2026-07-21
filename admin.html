@@ -131,7 +131,7 @@ tabla.innerHTML += `
 <td>${d.jornada}</td>
 <td>${d.totalQuinielas}</td>
 <td>${d.totalPago}</td>
-<td>
+<td id="estado-${id}">
 ${
 d.estado=="Pagó"
 ?"🟢 Pagó"
@@ -144,6 +144,7 @@ d.estado=="Pagó"
 <td>
 <button onclick="verQuiniela('${id}')">👁️</button>
 <button
+id="btn-${id}"
 onclick="cambiarEstado('${id}')"
 style="
 background:${
@@ -213,7 +214,23 @@ await updateDoc(doc(db,"quinielas",id),{
 estado:nuevoEstado
 });
 
-location.reload();
+// Cambiar el botón y el texto sin recargar
+const boton = document.getElementById("btn-"+id);
+const estado = document.getElementById("estado-"+id);
+
+if(nuevoEstado=="Pagó"){
+    boton.style.background="#28a745";
+    boton.style.color="white";
+    boton.innerHTML="Pagado";
+
+    estado.innerHTML="🟢 Pagó";
+}else{
+    boton.style.background="#ffc107";
+    boton.style.color="black";
+    boton.innerHTML="Pendiente";
+
+    estado.innerHTML="🟡 Pendiente";
+}
 
 }
 </script>
