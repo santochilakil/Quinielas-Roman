@@ -70,6 +70,7 @@ throw new Error("Sin acceso");
 <th>Quinielas</th>
 <th>Total</th>
 <th>Fecha</th>
+<th>Acciones</th>
 </tr>
 </thead>
 
@@ -119,15 +120,6 @@ snapshot.forEach(doc=>{
 
 const d = doc.data();
 
-tabla.innerHTML += `
-<tr>
-<td>${d.nombre}</td>
-<td>${d.jornada}</td>
-<td>${d.totalQuinielas}</td>
-<td>${d.totalPago}</td>
-<td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
-</tr>
-`;
 
 });
 
