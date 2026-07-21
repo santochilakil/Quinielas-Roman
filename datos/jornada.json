@@ -1,14 +1,14 @@
 {
-  "titulo": "Jornada 1",
+  "titulo": "Partidos del 24 al 26 de julio",
   "partidos": [
-    ["Cruz Azul","Puebla"],
-    ["Toluca","Pumas"],
-    ["Tigres","Atlético San Luis"],
     ["Atlante","América"],
     ["Tijuana","León"],
     ["Chivas","FC Juárez"],
+    ["Tigres","Atlético San Luis"],
     ["Santos","Atlas"],
     ["Necaxa","Monterrey"],
-    ["Pachuca","Querétaro"]
+    ["Pachuca","Querétaro"],
+    ["Toluca","Cruz Azul"],
+    ["Sporting Kansas City","Los Ángeles"]
   ]
 }
