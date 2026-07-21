@@ -61,7 +61,44 @@ font-size:16px;
 border-radius:8px;
 border:1px solid #999;
 }
+#tablaQuiniela{
+width:100%;
+border-collapse:collapse;
+margin-top:25px;
+background:white;
+}
 
+#tablaQuiniela th,
+#tablaQuiniela td{
+border:1px solid #222;
+text-align:center;
+padding:6px;
+}
+
+.logoCol{
+width:220px;
+background:white;
+}
+
+.partido{
+writing-mode:vertical-rl;
+transform:rotate(180deg);
+height:220px;
+width:45px;
+font-size:18px;
+font-weight:bold;
+background:white;
+}
+
+.amarillo{
+background:#ffe600;
+font-size:28px;
+font-weight:bold;
+}
+
+#listaParticipantes td{
+height:35px;
+}
 </style>
 
 </head>
@@ -86,7 +123,80 @@ Quedan 2 horas para realizar modificaciones
 id="buscar"
 type="text"
 placeholder="🔍 Buscar participante">
+<table id="tablaQuiniela">
 
+<thead>
+
+<tr>
+
+<th class="logoCol">
+
+<img
+src="logo.png"
+style="width:140px;display:block;margin:auto;">
+
+<br>
+
+<div style="
+background:#ffe600;
+font-size:28px;
+font-weight:bold;
+padding:8px;
+">
+RESULTADOS
+</div>
+
+<div style="
+background:#0d1b5e;
+color:white;
+font-size:22px;
+font-weight:bold;
+padding:8px;
+">
+PARTICIPANTES
+</div>
+
+</th>
+
+<th class="partido">Partido 1</th>
+<th class="partido">Partido 2</th>
+<th class="partido">Partido 3</th>
+<th class="partido">Partido 4</th>
+<th class="partido">Partido 5</th>
+<th class="partido">Partido 6</th>
+<th class="partido">Partido 7</th>
+<th class="partido">Partido 8</th>
+<th class="partido">Partido 9</th>
+<th class="partido">PS</th>
+
+</tr>
+
+<tr>
+
+<th class="amarillo">
+RESULTADOS
+</th>
+
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+
+</tr>
+
+</thead>
+
+<tbody id="listaParticipantes">
+
+</tbody>
+
+</table>
 </div>
 
 </body>
