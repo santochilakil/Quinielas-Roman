@@ -91,6 +91,7 @@ getFirestore,
 collection,
 getDocs,
 getDoc,
+updateDoc,
 doc,
 query,
 orderBy
@@ -131,7 +132,7 @@ tabla.innerHTML += `
 <td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
 <td>
 <button onclick="verQuiniela('${id}')">👁️</button>
-<button>🟢</button>
+<button onclick="cambiarEstado('${id}')">🟢</button>
 <button>🗑️</button>
 </td>
 </tr>
@@ -162,6 +163,17 @@ mensaje += "Valor: " + q.valor + "\n\n";
 
 document.getElementById("contenidoModal").innerText = mensaje;
 document.getElementById("modal").style.display = "block";
+
+}
+  window.cambiarEstado = async function(id){
+
+await updateDoc(doc(db,"quinielas",id),{
+estado:"Pagó"
+});
+
+alert("✅ Estado actualizado.");
+
+location.reload();
 
 }
 </script>
