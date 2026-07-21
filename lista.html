@@ -212,19 +212,33 @@ for(const nombre in participantes){
 
 const listaQuinielas = participantes[nombre];
 
+let detalle="";
+
+listaQuinielas.forEach((q,i)=>{
+
+detalle += `
+<div class="quiniela">
+
+<b>Quiniela ${i+1}</b>
+
+</div>
+`;
+
+});
+
 lista.innerHTML += `
 
 <div class="participante">
 
 <div class="nombre">
 
-▶ ${nombre} (${listaQuinielas.length})
+▸ ${nombre} (${listaQuinielas.length})
 
 </div>
 
 <div class="detalle">
 
-${listaQuinielas.length} quiniela(s)
+${detalle}
 
 </div>
 
@@ -233,6 +247,30 @@ ${listaQuinielas.length} quiniela(s)
 `;
 
 }
+
+document.querySelectorAll(".participante").forEach(card=>{
+
+card.addEventListener("click",()=>{
+
+const detalle = card.querySelector(".detalle");
+const nombre = card.querySelector(".nombre");
+
+if(detalle.style.display=="block"){
+
+detalle.style.display="none";
+nombre.innerHTML = nombre.innerHTML.replace("▾","▸");
+
+}else{
+
+detalle.style.display="block";
+nombre.innerHTML = nombre.innerHTML.replace("▸","▾");
+
+}
+
+});
+
+});
+
 </script>
 
 </body>
