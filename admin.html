@@ -88,6 +88,59 @@ margin:20px 0;
 </div>
 
 </div>
+  <h2 style="margin-top:30px;">⚙️ Configuración de la Jornada</h2>
+
+<div id="configJornada" style="
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<label><strong>Estado de la lista</strong></label>
+<br><br>
+
+<select id="estadoLista" style="padding:8px;width:220px;">
+    <option value="preliminar">📋 Lista Preliminar</option>
+    <option value="final">✅ Lista Final</option>
+</select>
+
+<br><br>
+
+<label><strong>Mensaje para los participantes</strong></label>
+<br><br>
+
+<input
+id="mensajeLista"
+type="text"
+style="width:100%;padding:10px;"
+placeholder="Ej. Quedan 2 horas para modificar">
+
+<br><br>
+
+<label><strong>Partidos de la jornada</strong></label>
+<br><br>
+
+<textarea
+id="partidosJornada"
+rows="12"
+style="width:100%;padding:10px;font-family:monospace;"
+placeholder="Un partido por línea..."></textarea>
+
+<br><br>
+
+<button id="guardarJornada"
+style="
+padding:12px 25px;
+background:#003366;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+">
+💾 Guardar Jornada
+</button>
+</div>
 <table>
 
 <thead>
@@ -121,6 +174,7 @@ getDocs,
 getDoc,
 updateDoc,
 deleteDoc,
+setDoc,
 doc,
 query,
 orderBy
