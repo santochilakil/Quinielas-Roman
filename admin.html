@@ -60,7 +60,34 @@ window.location.href = "index.html";
 
 </script>
 <h1>📋 Administración de Quinielas</h1>
+<div id="resumen" style="
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin:20px 0;
+">
 
+<div style="background:#2196F3;color:white;padding:12px;border-radius:10px;text-align:center;">
+<div style="font-size:14px;">👥 Participantes</div>
+<div id="totalParticipantes" style="font-size:22px;font-weight:bold;">0</div>
+</div>
+
+<div style="background:#28a745;color:white;padding:12px;border-radius:10px;text-align:center;">
+<div style="font-size:14px;">🟢 Pagados</div>
+<div id="totalPagados" style="font-size:22px;font-weight:bold;">0</div>
+</div>
+
+<div style="background:#ffc107;color:black;padding:12px;border-radius:10px;text-align:center;">
+<div style="font-size:14px;">🟡 Pendientes</div>
+<div id="totalPendientes" style="font-size:22px;font-weight:bold;">0</div>
+</div>
+
+<div style="background:#6f42c1;color:white;padding:12px;border-radius:10px;text-align:center;">
+<div style="font-size:14px;">💰 Recaudado</div>
+<div id="totalDinero" style="font-size:22px;font-weight:bold;">$0</div>
+</div>
+
+</div>
 <table>
 
 <thead>
@@ -118,10 +145,21 @@ tabla.innerHTML = "";
 const q = query(collection(db,"quinielas"),orderBy("fecha","desc"));
 
 const snapshot = await getDocs(q);
-
+let participantes=0;
+let pagados=0;
+let pendientes=0;
+let dinero=0;
 snapshot.forEach(doc=>{
 
 const d = doc.data();
+  participantes++;
+
+if(d.estado=="Pagó"){
+    pagados++;
+    dinero += Number(d.totalPago)||0;
+}else{
+    pendientes++;
+}
   const id = doc.id;
 
 tabla.innerHTML += `
@@ -172,6 +210,10 @@ d.estado=="Pagó"
 </tr>
 `;
 });
+  document.getElementById("totalParticipantes").innerHTML = participantes;
+document.getElementById("totalPagados").innerHTML = pagados;
+document.getElementById("totalPendientes").innerHTML = pendientes;
+document.getElementById("totalDinero").innerHTML = "$" + dinero;
 window.verQuiniela = async function(id){
 
 const documento = await getDoc(doc(db,"quinielas",id));
