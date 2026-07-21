@@ -69,6 +69,7 @@ throw new Error("Sin acceso");
 <th>Jornada</th>
 <th>Quinielas</th>
 <th>Total</th>
+<th>Estado</th>
 <th>Fecha</th>
 <th>Acciones</th>
 </tr>
@@ -129,6 +130,7 @@ tabla.innerHTML += `
 <td>${d.jornada}</td>
 <td>${d.totalQuinielas}</td>
 <td>${d.totalPago}</td>
+<td>${d.estado || "Pendiente"}</td>
 <td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
 <td>
 <button onclick="verQuiniela('${id}')">👁️</button>
@@ -173,7 +175,7 @@ estado:"Pagó"
 
 alert("✅ Estado actualizado.");
 
-location.reload();
+
 
 }
 </script>
