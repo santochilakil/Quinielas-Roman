@@ -327,6 +327,26 @@ Enviar por WhatsApp
 </div>
 
 <script type="module">
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
+  authDomain: "quinielas-cancun.firebaseapp.com",
+  projectId: "quinielas-cancun",
+  storageBucket: "quinielas-cancun.firebasestorage.app",
+  messagingSenderId: "419348494986",
+  appId: "1:419348494986:web:b73e42c52c3f41e19b8b73"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app); 
 const escudos = {
   "América": "america.png.webp",
   "Atlante": "atlante.png.png",
