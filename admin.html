@@ -119,6 +119,7 @@ const snapshot = await getDocs(q);
 snapshot.forEach(doc=>{
 
 const d = doc.data();
+  const id = doc.id;
 
 tabla.innerHTML += `
 <tr>
@@ -128,14 +129,18 @@ tabla.innerHTML += `
 <td>${d.totalPago}</td>
 <td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
 <td>
-<button>👁️</button>
+<button onclick="verQuiniela('${id}')">👁️</button>
 <button>🟢</button>
 <button>🗑️</button>
 </td>
 </tr>
 `;
 });
+window.verQuiniela = function(id){
 
+alert("ID de la quiniela: " + id);
+
+}
 </script>
 
 </body>
