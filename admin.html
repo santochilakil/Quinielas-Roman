@@ -143,8 +143,31 @@ d.estado=="Pagó"
 <td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
 <td>
 <button onclick="verQuiniela('${id}')">👁️</button>
-<button onclick="cambiarEstado('${id}')">🟢</button>
-<button>🗑️</button>
+<button
+onclick="cambiarEstado('${id}')"
+style="
+background:${
+d.estado=="Pagó"
+? "#28a745"
+: "#ffc107"
+};
+color:${
+d.estado=="Pagó"
+? "white"
+: "black"
+};
+border:none;
+padding:8px 14px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+">
+${
+d.estado=="Pagó"
+? "Pagado"
+: "Pendiente"
+}
+</button>
 </td>
 </tr>
 `;
