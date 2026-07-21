@@ -154,9 +154,9 @@ snapshot.forEach(doc=>{
 const d = doc.data();
   participantes++;
 
-if(d.estado=="Pagó"){
+if((d.estado || "").trim() == "Pagó"){
     pagados++;
-    dinero += Number(d.totalPago)||0;
+    dinero += Number((d.totalPago || "0").replace("$","").replace(",","")) || 0;
 }else{
     pendientes++;
 }
