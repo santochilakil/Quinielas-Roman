@@ -160,10 +160,27 @@ mensaje += "Valor: " + q.valor + "\n\n";
 
 });
 
-alert(mensaje);
+document.getElementById("contenidoModal").innerText = mensaje;
+document.getElementById("modal").style.display = "block";
 
 }
 </script>
+<div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999;">
 
+<div style="background:white;width:90%;max-width:500px;margin:40px auto;padding:20px;border-radius:15px;max-height:80%;overflow:auto;">
+
+<h2>Detalle de la Quiniela</h2>
+
+<div id="contenidoModal"></div>
+
+<br>
+
+<button onclick="document.getElementById('modal').style.display='none'">
+Cerrar
+</button>
+
+</div>
+
+</div>
 </body>
 </html>
