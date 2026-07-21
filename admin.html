@@ -272,7 +272,21 @@ if(nuevoEstado=="Pagó"){
 
     estado.innerHTML="🟡 Pendiente";
 }
+let tPagados = document.getElementById("totalPagados");
+let tPendientes = document.getElementById("totalPendientes");
+let tDinero = document.getElementById("totalDinero");
 
+const importe = Number((d.totalPago || "0").replace("$","").replace(",","")) || 0;
+
+if(nuevoEstado=="Pagó"){
+    tPagados.innerHTML = Number(tPagados.innerHTML) + 1;
+    tPendientes.innerHTML = Number(tPendientes.innerHTML) - 1;
+    tDinero.innerHTML = "$" + (Number(tDinero.innerHTML.replace("$","")) + importe);
+}else{
+    tPagados.innerHTML = Number(tPagados.innerHTML) - 1;
+    tPendientes.innerHTML = Number(tPendientes.innerHTML) + 1;
+    tDinero.innerHTML = "$" + (Number(tDinero.innerHTML.replace("$","")) - importe);
+}
 }
 </script>
 <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999;">
