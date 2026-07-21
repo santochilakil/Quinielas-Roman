@@ -728,15 +728,25 @@ mensaje+="Valor: "+q.valor+"\n\n";
 mensaje+="Total de quinielas: "+document.getElementById("totalQuinielas").textContent+"\n";
 
 mensaje+="Total a pagar: "+document.getElementById("totalPago").textContent;
-
 if(confirm("¿Esta seguro que desea enviar las quinielas por WhatsApp?")){
 
-const telefono="529981488824";
+try{
 
-window.open(
-"https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje),
-"_blank"
-);
+    await guardarEnFirebase();
+
+    const telefono="529981488824";
+
+    window.open(
+        "https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje),
+        "_blank"
+    );
+
+}catch(error){
+
+    console.error(error);
+    alert("Ocurrió un error al guardar la quiniela.");
+
+}
 
 }
 
