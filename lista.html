@@ -194,28 +194,45 @@ const q = query(collection(db,"quinielas"),orderBy("nombre"));
 
 const snapshot = await getDocs(q);
 
+const participantes = {};
+
 snapshot.forEach(doc=>{
 
 const d = doc.data();
 
+if(!participantes[d.nombre]){
+    participantes[d.nombre]=[];
+}
+
+participantes[d.nombre].push(d);
+
+});
+
+for(const nombre in participantes){
+
+const listaQuinielas = participantes[nombre];
+
 lista.innerHTML += `
+
 <div class="participante">
 
 <div class="nombre">
-▶ ${d.nombre}
+
+▶ ${nombre} (${listaQuinielas.length})
+
 </div>
 
 <div class="detalle">
 
-${d.quinielas.length} quiniela(s)
+${listaQuinielas.length} quiniela(s)
 
 </div>
 
 </div>
+
 `;
 
-});
-
+}
 </script>
 
 </body>
