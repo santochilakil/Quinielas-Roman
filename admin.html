@@ -76,7 +76,7 @@ throw new Error("Sin acceso");
 
 <tbody id="datos">
 <tr>
-<td colspan="5">Cargando...</td>
+<td colspan="6">Cargando...</td>
 </tr>
 </tbody>
 
@@ -120,7 +120,20 @@ snapshot.forEach(doc=>{
 
 const d = doc.data();
 
-
+tabla.innerHTML += `
+<tr>
+<td>${d.nombre}</td>
+<td>${d.jornada}</td>
+<td>${d.totalQuinielas}</td>
+<td>${d.totalPago}</td>
+<td>${d.fecha ? new Date(d.fecha.seconds*1000).toLocaleString() : ""}</td>
+<td>
+<button>👁️</button>
+<button>🟢</button>
+<button>🗑️</button>
+</td>
+</tr>
+`;
 });
 
 </script>
