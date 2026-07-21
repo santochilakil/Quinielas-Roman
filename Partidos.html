@@ -383,7 +383,21 @@ botones.forEach(boton=>{
 
 boton.addEventListener("click",()=>{
 
+if(boton.dataset.partido=="10"){
+
+document.querySelectorAll('.opcion[data-partido="10"]').forEach(op=>{
+
+op.classList.remove("activa");
+
+});
+
+boton.classList.add("activa");
+
+}else{
+
 boton.classList.toggle("activa");
+
+}
 
 });
 
