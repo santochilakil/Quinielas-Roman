@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Administrador - Quinielas Cancún</title>
+
+<style>
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f4f4f4;
+margin:0;
+padding:20px;
+}
+
+h1{
+text-align:center;
+color:#003366;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#003366;
+color:white;
+}
+
+tr:nth-child(even){
+background:#f7f7f7;
+}
+</style>
+
+</head>
+<body>
+
+<h1>📋 Administración de Quinielas</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Jornada</th>
+<th>Quinielas</th>
+<th>Total</th>
+<th>Fecha</th>
+</tr>
+</thead>
+
+<tbody id="datos">
+
+<tr>
+<td colspan="5">Cargando...</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs,
+query,
+orderBy
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
+authDomain:"quinielas-cancun.firebaseapp.com",
+projectId:"quinielas-cancun",
+storageBucket:"quinielas-cancun.firebasestorage.app",
+messagingSenderId:"419348494986",
+appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
+
+};
+
+const app=initializeApp(firebaseConfig);
+
+const db=getFirestore(app);
+
+const tabla=document.getElementById("datos");
+
+tabla.innerHTML="";
+
+const q=query(collection(db,"quinielas"),orderBy("fecha","desc"));
+
+const snapshot=await getDocs(q);
+
+snapshot.forEach(doc=>{
+
+const d=doc.data();
+
+const fila=`
+<tr>
+
+<td>${d.nombre}</td>
+
+<td>${d.jornada}</td>
+
+<td>${d.totalQuinielas}</td>
+
+<td>${d.totalPago}</td>
+
+<td>${
+d.fecha
+?
+new Date(d.fecha.seconds*1000).toLocaleString()
+:
+""
+}</td>
+
+</tr>
+`;
+
+tabla.innerHTML+=fila;
+
+});
+
+</script>
+
+</body>
+</html>
