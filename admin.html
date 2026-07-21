@@ -90,10 +90,11 @@ import {
 getFirestore,
 collection,
 getDocs,
+getDoc,
+doc,
 query,
 orderBy
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
 const firebaseConfig = {
 
 apiKey:"AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
@@ -136,9 +137,30 @@ tabla.innerHTML += `
 </tr>
 `;
 });
-window.verQuiniela = function(id){
+window.verQuiniela = async function(id){
 
-alert("ID de la quiniela: " + id);
+const documento = await getDoc(doc(db,"quinielas",id));
+
+const d = documento.data();
+
+let mensaje = "👤 " + d.nombre + "\n\n";
+
+d.quinielas.forEach((q,i)=>{
+
+mensaje += "QUINIELA " + (i+1) + "\n";
+
+for(let j=0;j<9;j++){
+
+mensaje += "P" + (j+1) + ": " + q.jugadas[j] + "\n";
+
+}
+
+mensaje += "PS: " + q.jugadas[9] + "\n";
+mensaje += "Valor: " + q.valor + "\n\n";
+
+});
+
+alert(mensaje);
 
 }
 </script>
