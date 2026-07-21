@@ -10,5 +10,10 @@
     ["Pachuca","Querétaro"],
     ["Toluca","Cruz Azul"],
     ["Sporting Kansas City","Los Ángeles"]
+  ],
+
+  "suplente": [
+    "Chicago Fire",
+    "New York City"
   ]
 }
