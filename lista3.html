@@ -180,8 +180,85 @@ PARTICIPANTES
 </tbody>
 
 </table>
+
 </div>
 
-</body>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
+  authDomain: "quinielas-cancun.firebaseapp.com",
+  projectId: "quinielas-cancun",
+  storageBucket: "quinielas-cancun.firebasestorage.app",
+  messagingSenderId: "419348494986",
+  appId: "1:419348494986:web:b73e42c52c3f41e19b8b73"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const tbody = document.getElementById("listaParticipantes");
+
+async function cargarLista() {
+
+    tbody.innerHTML = "";
+
+    let numero = 1;
+
+    const q = query(
+        collection(db, "quinielas"),
+        orderBy("fecha", "asc")
+    );
+
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach(doc => {
+
+        const datos = doc.data();
+
+        const nombre = datos.nombre || "";
+
+        const quinielas = datos.quinielas || [];
+
+        quinielas.forEach(q => {
+
+            const fila = document.createElement("tr");
+
+            fila.innerHTML = `
+                <td><b>${numero}</b><br>${nombre}</td>
+                <td>${q.jugadas[0] || ""}</td>
+                <td>${q.jugadas[1] || ""}</td>
+                <td>${q.jugadas[2] || ""}</td>
+                <td>${q.jugadas[3] || ""}</td>
+                <td>${q.jugadas[4] || ""}</td>
+                <td>${q.jugadas[5] || ""}</td>
+                <td>${q.jugadas[6] || ""}</td>
+                <td>${q.jugadas[7] || ""}</td>
+                <td>${q.jugadas[8] || ""}</td>
+                <td>${q.jugadas[9] || ""}</td>
+            `;
+
+            tbody.appendChild(fila);
+
+            numero++;
+
+        });
+
+    });
+
+}
+
+cargarLista();
+</script>
+
+</body>
 </html>
