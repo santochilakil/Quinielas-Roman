@@ -379,7 +379,7 @@ let suplente = [];
 
    jornada = data.partidos;
 suplente = data.suplente;
-
+COSTO = data.costo;
     const titulo = document.getElementById("tituloJornada");
     if (titulo) {
         titulo.innerHTML = `
@@ -391,7 +391,7 @@ suplente = data.suplente;
     cargarJornada();
 
 });
-const COSTO=20;
+let COSTO = 20;
 
 let quinielas=[];
     async function guardarEnFirebase(){
