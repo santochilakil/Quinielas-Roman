@@ -29,27 +29,38 @@ box-sizing:border-box;
 
 .logo{
 display:block;
-margin:auto;
+margin:0 auto 10px;
 width:130px;
 }
 
-h1{
+.encabezado{
 text-align:center;
-color:#4B0082;
-margin:10px 0 0;
+margin-bottom:20px;
+}
+
+h1{
+margin:0;
+text-align:center;
+font-size:42px;
+font-weight:900;
+color:#FFD700;
+text-shadow:3px 3px 8px rgba(0,0,0,.6);
 }
 
 h2{
 text-align:center;
-margin:5px 0;
-color:#333;
+margin:6px 0;
+font-size:26px;
+font-weight:bold;
+color:#0d1b5e;
 }
 
 #mensaje{
 text-align:center;
+margin-top:12px;
+font-size:18px;
 font-weight:bold;
 color:#d32f2f;
-margin:15px 0;
 }
 
 #buscar{
@@ -107,16 +118,20 @@ height:35px;
 
 <div class="contenedor">
 
-<img src="Logo.png" class="logo">
+<div class="encabezado">
 
-<h1>QUINIELAS CANCÚN</h1>
+    <img src="Logo.png" class="logo">
 
-<h2 id="estadoLista">
-LISTA PRELIMINAR
-</h2>
+    <h1>QUINIELAS CANCÚN</h1>
 
-<div id="mensaje">
-Quedan 2 horas para realizar modificaciones
+    <h2 id="estadoLista">
+        LISTA PRELIMINAR
+    </h2>
+
+    <div id="mensaje">
+        Quedan 2 horas para realizar modificaciones
+    </div>
+
 </div>
 
 <input
