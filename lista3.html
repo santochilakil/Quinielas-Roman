@@ -207,7 +207,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const tbody = document.getElementById("listaParticipantes");
+function expandirQuiniela(jugadas){
 
+    let resultado=[[]];
+
+    jugadas.forEach(jugada=>{
+
+        const opciones=jugada.split("");
+
+        let nuevas=[];
+
+        resultado.forEach(base=>{
+
+            opciones.forEach(op=>{
+
+                nuevas.push([...base,op]);
+
+            });
+
+        });
+
+        resultado=nuevas;
+
+    });
+
+    return resultado;
+
+}
 async function cargarLista() {
 
     tbody.innerHTML = "";
