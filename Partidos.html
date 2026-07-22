@@ -580,27 +580,30 @@ triples:triples
 };
 
 }
-  function actualizarResumen(){
+ function actualizarResumen(){
 
-let totalQuinielas=0;
-let totalDobles=0;
-let totalTriples=0;
+let totalQuinielas = 0;
+let totalDobles = 0;
+let totalTriples = 0;
+let totalPago = 0;
 
 quinielas.forEach(q=>{
 
-totalQuinielas+=q.valor;
-totalDobles+=q.dobles;
-totalTriples+=q.triples;
+    totalQuinielas += q.valor;
+    totalDobles += q.dobles;
+    totalTriples += q.triples;
+
+    // Cada quiniela paga según sus propias combinaciones
+    totalPago += q.valor * COSTO;
 
 });
 
-document.getElementById("totalQuinielas").textContent=totalQuinielas;
-document.getElementById("totalDobles").textContent=totalDobles;
-document.getElementById("totalTriples").textContent=totalTriples;
-document.getElementById("totalPago").textContent="$"+(totalQuinielas*COSTO);
+document.getElementById("totalQuinielas").textContent = totalQuinielas;
+document.getElementById("totalDobles").textContent = totalDobles;
+document.getElementById("totalTriples").textContent = totalTriples;
+document.getElementById("totalPago").textContent = "$" + totalPago;
 
-}
-
+} 
 function limpiarSeleccion(){
 
 document.querySelectorAll(".opcion.activa").forEach(op=>{
