@@ -689,14 +689,18 @@ actualizarResumen();
 
 }
 
-function eliminarQuiniela(indice){
+window.eliminarQuiniela = function(indice){
 
-quinielas.splice(indice,1);
+    if(!confirm("¿Deseas eliminar esta quiniela?")){
+        return;
+    }
 
-mostrarQuinielas();
+    quinielas.splice(indice,1);
+
+    mostrarQuinielas();
 
 }
- document.getElementById("enviar").addEventListener("click", async ()=>{ 
+    document.getElementById("enviar").addEventListener("click", async ()=>{ 
 
 if(quinielas.length===0){
 
