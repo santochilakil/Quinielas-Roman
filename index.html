@@ -104,8 +104,15 @@ PRONOSTICA LOS RESULTADOS Y PARTICIPA POR EL PREMIO
 
 
 <a href="Formulario.html" class="boton">CREAR QUINIELA</a>
-<h3>JORNADA 2</h3>
+<h3 id="jornadaTitulo">Cargando...</h3>
 </div>
-
+<script>
+fetch("datos/jornada.json")
+.then(r => r.json())
+.then(datos => {
+    document.getElementById("jornadaTitulo").innerHTML =
+        "JORNADA " + datos.jornada;
+});
+</script>
 </body>
 </html>
