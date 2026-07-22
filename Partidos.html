@@ -373,6 +373,8 @@ const escudos = {
 };
 let jornada = [];
 let suplente = [];
+let numeroJornada = 1;
+let telefono = "";
    fetch("/datos/jornada.json")
 .then(res => res.json())
 .then(data => {
@@ -380,6 +382,8 @@ let suplente = [];
    jornada = data.partidos;
 suplente = data.suplente;
 COSTO = data.costo;
+    numeroJornada = data.jornada;
+telefono = data.telefono;
     const titulo = document.getElementById("tituloJornada");
     if (titulo) {
         titulo.innerHTML = `
@@ -402,7 +406,7 @@ let quinielas=[];
 
     nombre: nombre,
     fecha: serverTimestamp(),
-    jornada: 2,
+    jornada: numeroJornada,
     quinielas: quinielas,
     totalQuinielas: Number(document.getElementById("totalQuinielas").textContent),
     totalPago: document.getElementById("totalPago").textContent,
@@ -738,7 +742,7 @@ try{
 
     await guardarEnFirebase();
 
-    const telefono="529981488824";
+    
 
     window.open(
         "https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje),
