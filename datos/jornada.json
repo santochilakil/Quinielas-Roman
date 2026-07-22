@@ -1,5 +1,8 @@
 {
+  "jornada": 2,
   "titulo": "Partidos del 24 al 26 de julio",
+  "costo": 20,
+  "telefono": "529981488824",
   "partidos": [
     ["Atlante","América"],
     ["Tijuana","León"],
@@ -11,7 +14,6 @@
     ["Toluca","Cruz Azul"],
     ["Sporting Kansas City","Los Ángeles"]
   ],
-
   "suplente": [
     "Chicago Fire",
     "New York City"
