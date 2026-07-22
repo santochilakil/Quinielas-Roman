@@ -345,7 +345,40 @@ if(nuevoEstado=="Pagó"){
     tDinero.innerHTML = "$" + (Number(tDinero.innerHTML.replace("$","")) - importe);
 }
 }
-  
+  window.eliminarQuiniela = async function(id, boton){
+
+if(!confirm("¿Eliminar esta quiniela?")){
+    return;
+}
+
+const documento = await getDoc(doc(db,"quinielas",id));
+const d = documento.data();
+
+await deleteDoc(doc(db,"quinielas",id));
+
+document.getElementById("totalParticipantes").innerHTML--;
+
+if((d.estado || "").trim()=="Pagó"){
+
+    document.getElementById("totalPagados").innerHTML--;
+
+    const importe = Number((d.totalPago || "0").replace("$","").replace(",","")) || 0;
+
+    document.getElementById("totalDinero").innerHTML =
+    "$" + (
+        Number(document.getElementById("totalDinero").innerHTML.replace("$",""))
+        - importe
+    );
+
+}else{
+
+    document.getElementById("totalPendientes").innerHTML--;
+
+}
+
+boton.closest("tr").remove();
+
+}
 </script>
 <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999;">
 
