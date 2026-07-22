@@ -270,7 +270,10 @@ async function cargarLista() {
     const snapshot = await getDocs(q);
 
     snapshot.forEach(doc => {
-alert("Documentos: " + snapshot.size);
+
+    alert(doc.data().nombre);
+});
+    snapshot.forEach(doc => {
         const datos = doc.data();
 
         const nombre = datos.nombre || "";
