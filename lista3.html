@@ -66,7 +66,8 @@ border-radius:8px;
 border:1px solid #999;
 }
 #tablaQuiniela{
-width:100%;
+width:max-content;
+min-width:100%;
 border-collapse:collapse;
 margin-top:25px;
 background:white;
@@ -129,6 +130,7 @@ height:35px;
 id="buscar"
 type="text"
 placeholder="🔍 Buscar participante">
+    <div style="overflow-x:auto; width:100%;">
 <table id="tablaQuiniela">
 
 <thead>
@@ -209,7 +211,7 @@ PARTICIPANTES
 </tbody>
 
 </table>
-
+</div>
 </div>
 
 <script type="module">
