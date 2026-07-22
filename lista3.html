@@ -230,6 +230,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const tbody = document.getElementById("listaParticipantes");
+ let partidos = [];
+
+fetch("/datos/jornada.json")
+    .then(r => r.json())
+    .then(data => {
+
+        partidos = data.partidos;
+
+        actualizarEncabezados();
+
+        cargarLista();
+
+    });
+
+function actualizarEncabezados(){
+
+    const encabezados = document.querySelectorAll(".partido");
+
+    partidos.forEach((p,i)=>{
+
+        if(encabezados[i]){
+
+            encabezados[i].innerHTML =
+                p[0] + "<br>VS<br>" + p[1];
+
+        }
+
+    });
+
+}   
 function expandirQuiniela(jugadas){
 
     let resultado=[[]];
@@ -312,7 +342,7 @@ async function cargarLista() {
 
 }
 
-cargarLista();
+
 </script>
 
 </body>
