@@ -78,13 +78,35 @@ color:#ff0000;
 #buscar{
 display:block;
 margin:15px auto;
-padding:10px;
-width:320px;
-font-size:16px;
-border-radius:8px;
-border:2px solid #4A87BD;
-background:white;
-color:#0d1b5e;
+padding:14px 18px;
+width:340px;
+font-size:18px;
+font-weight:bold;
+border-radius:14px;
+border:2px solid #8fc8ff;
+outline:none;
+color:white;
+
+background:linear-gradient(
+180deg,
+#d7ecff 0%,
+#5ea9ff 12%,
+#1d73d6 30%,
+#0b4ea8 50%,
+#1d73d6 70%,
+#6fb6ff 88%,
+#0a3d87 100%
+);
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.35),
+inset 0 1px 2px rgba(255,255,255,.8),
+inset 0 -2px 3px rgba(0,0,0,.25);
+}
+
+#buscar::placeholder{
+color:#eef7ff;
+opacity:1;
 }
 
 #tablaQuiniela{
