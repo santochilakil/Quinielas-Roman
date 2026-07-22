@@ -439,19 +439,10 @@ async function cargarLista() {
 
         const fila = document.createElement("tr");
 
-        fila.innerHTML = `
-            <td><strong>${numero}</strong> ${nombre}</td>
-            <td>${jugada[0]}</td>
-            <td>${jugada[1]}</td>
-            <td>${jugada[2]}</td>
-            <td>${jugada[3]}</td>
-            <td>${jugada[4]}</td>
-            <td>${jugada[5]}</td>
-            <td>${jugada[6]}</td>
-            <td>${jugada[7]}</td>
-            <td>${jugada[8]}</td>
-            <td>${jugada[9]}</td>
-        `;
+       fila.innerHTML = `
+<td><strong>${numero}</strong> ${nombre}</td>
+${jugada.map(v=>`<td class="casilla">${v}</td>`).join("")}
+`;
 
         tbody.appendChild(fila);
 
