@@ -190,7 +190,7 @@ PARTICIPANTES
 <th class="partido">Partido 7</th>
 <th class="partido">Partido 8</th>
 <th class="partido">Partido 9</th>
-<th class="partido">PS</th>
+<th class="partido" id="partidoSuplente">PS</th>
 
 </tr>
 
@@ -231,19 +231,20 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const tbody = document.getElementById("listaParticipantes");
  let partidos = [];
+let suplente = [];
 
 fetch("/datos/jornada.json")
     .then(r => r.json())
-    .then(data => {
+   .then(data => {
 
-        partidos = data.partidos;
+    partidos = data.partidos;
+    suplente = data.suplente;
 
-        actualizarEncabezados();
+    actualizarEncabezados();
 
-        cargarLista();
+    cargarLista();
 
-    });
-
+});
 function actualizarEncabezados(){
 
     const encabezados = document.querySelectorAll(".partido");
@@ -258,10 +259,11 @@ function actualizarEncabezados(){
         }
 
     });
-if (encabezados[9] && suplente.length === 2) {
+const ps = document.getElementById("partidoSuplente");
 
-    encabezados[9].textContent =
-        suplente[0] + " vs " + suplente[1];
+if (ps && suplente.length === 2) {
+
+    ps.textContent = suplente[0] + " vs " + suplente[1];
 
 }
 }   
