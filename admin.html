@@ -310,7 +310,31 @@ d.estado=="Pagó"
 await updateDoc(doc(db,"quinielas",id),{
 estado:nuevoEstado
 });
-  window.eliminarQuiniela = async function(id, boton){
+ 
+
+// Cambiar el botón y el texto sin recargar
+const boton = document.getElementById("btn-"+id);
+const estado = document.getElementById("estado-"+id);
+
+if(nuevoEstado=="Pagó"){
+    boton.style.background="#28a745";
+    boton.style.color="white";
+    boton.innerHTML="Pagado";
+
+    estado.innerHTML="🟢 Pagó";
+}else{
+    boton.style.background="#ffc107";
+    boton.style.color="black";
+    boton.innerHTML="Pendiente";
+
+    estado.innerHTML="🟡 Pendiente";
+}
+let tPagados = document.getElementById("totalPagados");
+let tPendientes = document.getElementById("totalPendientes");
+let tDinero = document.getElementById("totalDinero");
+
+const importe = Number((d.totalPago || "0").replace("$","").replace(",","")) || 0;
+window.eliminarQuiniela = async function(id, boton){
 
 if(!confirm("¿Eliminar esta quiniela?")){
     return;
@@ -344,30 +368,6 @@ if((d.estado || "").trim()=="Pagó"){
 boton.closest("tr").remove();
 
 }
-
-// Cambiar el botón y el texto sin recargar
-const boton = document.getElementById("btn-"+id);
-const estado = document.getElementById("estado-"+id);
-
-if(nuevoEstado=="Pagó"){
-    boton.style.background="#28a745";
-    boton.style.color="white";
-    boton.innerHTML="Pagado";
-
-    estado.innerHTML="🟢 Pagó";
-}else{
-    boton.style.background="#ffc107";
-    boton.style.color="black";
-    boton.innerHTML="Pendiente";
-
-    estado.innerHTML="🟡 Pendiente";
-}
-let tPagados = document.getElementById("totalPagados");
-let tPendientes = document.getElementById("totalPendientes");
-let tDinero = document.getElementById("totalDinero");
-
-const importe = Number((d.totalPago || "0").replace("$","").replace(",","")) || 0;
-
 if(nuevoEstado=="Pagó"){
     tPagados.innerHTML = Number(tPagados.innerHTML) + 1;
     tPendientes.innerHTML = Number(tPendientes.innerHTML) - 1;
