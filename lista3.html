@@ -229,29 +229,29 @@ async function cargarLista() {
 
         const quinielas = datos.quinielas || [];
 
-        quinielas.forEach(q => {
+  quinielas.forEach((quiniela) => {
 
-            const fila = document.createElement("tr");
+    const fila = document.createElement("tr");
 
-            fila.innerHTML = `
-                <td><b>${numero}</b><br>${nombre}</td>
-                <td>${q.jugadas[0] || ""}</td>
-                <td>${q.jugadas[1] || ""}</td>
-                <td>${q.jugadas[2] || ""}</td>
-                <td>${q.jugadas[3] || ""}</td>
-                <td>${q.jugadas[4] || ""}</td>
-                <td>${q.jugadas[5] || ""}</td>
-                <td>${q.jugadas[6] || ""}</td>
-                <td>${q.jugadas[7] || ""}</td>
-                <td>${q.jugadas[8] || ""}</td>
-                <td>${q.jugadas[9] || ""}</td>
-            `;
+    fila.innerHTML = `
+        <td><strong>${numero}</strong><br>${nombre}</td>
+        <td>${quiniela.jugadas?.[0] ?? ""}</td>
+        <td>${quiniela.jugadas?.[1] ?? ""}</td>
+        <td>${quiniela.jugadas?.[2] ?? ""}</td>
+        <td>${quiniela.jugadas?.[3] ?? ""}</td>
+        <td>${quiniela.jugadas?.[4] ?? ""}</td>
+        <td>${quiniela.jugadas?.[5] ?? ""}</td>
+        <td>${quiniela.jugadas?.[6] ?? ""}</td>
+        <td>${quiniela.jugadas?.[7] ?? ""}</td>
+        <td>${quiniela.jugadas?.[8] ?? ""}</td>
+        <td>${quiniela.jugadas?.[9] ?? ""}</td>
+    `;
 
-            tbody.appendChild(fila);
+    tbody.appendChild(fila);
 
-            numero++;
+    numero++;
 
-        });
+});
 
     });
 
