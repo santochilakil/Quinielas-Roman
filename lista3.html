@@ -258,7 +258,12 @@ function actualizarEncabezados(){
         }
 
     });
+if (encabezados[9] && suplente.length === 2) {
 
+    encabezados[9].textContent =
+        suplente[0] + " vs " + suplente[1];
+
+}
 }   
 function expandirQuiniela(jugadas){
 
