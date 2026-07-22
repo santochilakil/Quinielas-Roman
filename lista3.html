@@ -257,25 +257,31 @@ async function cargarLista() {
 
   quinielas.forEach((quiniela) => {
 
-    const fila = document.createElement("tr");
+    const combinaciones = expandirQuiniela(quiniela.jugadas);
 
-    fila.innerHTML = `
-        <td><strong>${numero}</strong><br>${nombre}</td>
-        <td>${quiniela.jugadas?.[0] ?? ""}</td>
-        <td>${quiniela.jugadas?.[1] ?? ""}</td>
-        <td>${quiniela.jugadas?.[2] ?? ""}</td>
-        <td>${quiniela.jugadas?.[3] ?? ""}</td>
-        <td>${quiniela.jugadas?.[4] ?? ""}</td>
-        <td>${quiniela.jugadas?.[5] ?? ""}</td>
-        <td>${quiniela.jugadas?.[6] ?? ""}</td>
-        <td>${quiniela.jugadas?.[7] ?? ""}</td>
-        <td>${quiniela.jugadas?.[8] ?? ""}</td>
-        <td>${quiniela.jugadas?.[9] ?? ""}</td>
-    `;
+    combinaciones.forEach(jugada => {
 
-    tbody.appendChild(fila);
+        const fila = document.createElement("tr");
 
-    numero++;
+        fila.innerHTML = `
+            <td><strong>${numero}</strong><br>${nombre}</td>
+            <td>${jugada[0]}</td>
+            <td>${jugada[1]}</td>
+            <td>${jugada[2]}</td>
+            <td>${jugada[3]}</td>
+            <td>${jugada[4]}</td>
+            <td>${jugada[5]}</td>
+            <td>${jugada[6]}</td>
+            <td>${jugada[7]}</td>
+            <td>${jugada[8]}</td>
+            <td>${jugada[9]}</td>
+        `;
+
+        tbody.appendChild(fila);
+
+        numero++;
+
+    });
 
 });
 
