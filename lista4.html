@@ -185,7 +185,7 @@ z-index:100;
 }
  /* Todo tu CSS anterior */
 
-.fila-resultados th{
+.fila-resultados td{
     background:linear-gradient(#ffd84d,#d4a300);
     color:#000;
     height:36px;
@@ -200,7 +200,7 @@ z-index:100;
     width:60px;
 }
 
-.fila-resultados th[contenteditable]{
+.fila-resultados td[contenteditable]{
     background:#fff;
     cursor:text;
     font-size:16px;
@@ -260,20 +260,28 @@ placeholder="🔍 Buscar participante..."
 <th class="partido-ps">Chicago Fire vs New YC</th>
 
 </tr>
-<tr class="fila-resultados">
-    <th class="resultado-nombre">RESULTADOS</th>
+</thead>
 
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
-    <th contenteditable="true">&nbsp;</th>
+<tbody id="listaParticipantes">
+
+<tr class="fila-resultados">
+
+<td class="resultado-nombre">RESULTADOS</td>
+
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+
 </tr>
+
+</tbody>
 </thead>
 
 <tbody id="listaParticipantes">
