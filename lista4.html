@@ -227,17 +227,15 @@ z-index:100;
     padding:0;
     border:2px solid #2a2a2a;
 }
-.aciertos::before,
-.aciertos::after{
-    content:"";
-    position:absolute;
-    left:-2px;
-    width:100%;
-    border-left:2px solid #2a2a2a;
-    border-right:2px solid #2a2a2a;
-    background:#8eff1f;
+.aciertos-total{
+    width:26px;
+    min-width:26px;
+    background:#ffffff;
+    border:2px solid #2a2a2a;
+    text-align:center;
+    font-size:14px;
+    font-weight:bold;
 }
-
 </style>
 
 
@@ -290,7 +288,7 @@ placeholder="🔍 Buscar participante..."
 <th class="partido">Sporting KC vs Los Ángeles</th>
 
 <th class="partido-ps">Chicago Fire vs New YC</th>
-<th class="aciertos" rowspan="2">ACIERTOS</th>
+<th class="aciertos">ACIERTOS</th>
 </tr>
 </thead>
 
@@ -310,7 +308,7 @@ placeholder="🔍 Buscar participante..."
 <td contenteditable="true"></td>
 <td contenteditable="true"></td>
 <td contenteditable="true"></td>
-
+<td class="aciertos-total"></td>
 </tr>
 
 </tbody>
