@@ -454,7 +454,23 @@ ${jugada.map(v=>`<td class="casilla">${v}</td>`).join("")}
 }
 
 cargarLista();   
+const buscar = document.getElementById("buscar");
 
+buscar.addEventListener("input", () => {
+
+    const texto = buscar.value.toLowerCase();
+
+    const filas = tbody.querySelectorAll("tr");
+
+    filas.forEach(fila => {
+
+        const nombre = fila.cells[0].textContent.toLowerCase();
+
+        fila.style.display = nombre.includes(texto) ? "" : "none";
+
+    });
+
+});
 </script>
 
 </body>
