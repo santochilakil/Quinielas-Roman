@@ -90,6 +90,99 @@ box-shadow:
 0 0 45px rgba(120,220,255,.7),
 inset 0 2px 5px rgba(255,255,255,.95);
 } 
+ .tabla-contenedor{
+width:100%;
+margin-top:25px;
+overflow:auto;
+border-radius:10px;
+}
+
+.tabla{
+border-collapse:collapse;
+margin:auto;
+min-width:1050px;
+background:#fff;
+}
+
+.tabla th,
+.tabla td{
+border:2px solid #2a2a2a;
+text-align:center;
+padding:0;
+}
+
+.participante{
+min-width:170px;
+background:linear-gradient(to bottom,#72b8ff,#2d72d9,#5aa6ff);
+color:#fff;
+font-size:28px;
+font-weight:bold;
+text-shadow:1px 1px 2px #000;
+}
+
+.p{
+width:70px;
+height:42px;
+background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+color:#000;
+font-size:28px;
+font-weight:bold;
+}
+
+.ps{
+width:70px;
+height:42px;
+background:linear-gradient(to bottom,#ffd19a,#ff9f1c,#ff7b00,#ffc07a);
+color:#000;
+font-size:28px;
+font-weight:bold;
+}
+
+.partido{
+width:70px;
+height:190px;
+background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+color:#000;
+writing-mode:vertical-rl;
+transform:rotate(180deg);
+font-size:15px;
+font-weight:bold;
+padding:10px 4px;
+}
+
+.partido-ps{
+width:70px;
+height:190px;
+background:linear-gradient(to bottom,#ffd19a,#ff9f1c,#ff7b00,#ffc07a);
+color:#000;
+writing-mode:vertical-rl;
+transform:rotate(180deg);
+font-size:15px;
+font-weight:bold;
+padding:10px 4px;
+}
+
+#listaParticipantes td{
+height:52px;
+font-size:24px;
+font-weight:bold;
+background:#fff;
+color:#000;
+}
+
+#listaParticipantes td:first-child{
+background:#000;
+color:#fff;
+text-align:left;
+padding-left:10px;
+min-width:170px;
+}
+
+thead{
+position:sticky;
+top:0;
+z-index:100;
+}
 </style>
 
 </head>
@@ -103,41 +196,43 @@ inset 0 2px 5px rgba(255,255,255,.95);
 type="text"
 placeholder="🔍 Buscar participante..."
 >
- <div class="tabla-contenedor">
+<div class="tabla-contenedor">
 
-<table class="tabla-lista">
+<table class="tabla">
 
 <thead>
 
-<tr class="fila-p">
+<tr>
 
 <th class="participante" rowspan="2">Participante</th>
 
-<th>P1</th>
-<th>P2</th>
-<th>P3</th>
-<th>P4</th>
-<th>P5</th>
-<th>P6</th>
-<th>P7</th>
-<th>P8</th>
-<th>P9</th>
+<th class="p">P1</th>
+<th class="p">P2</th>
+<th class="p">P3</th>
+<th class="p">P4</th>
+<th class="p">P5</th>
+<th class="p">P6</th>
+<th class="p">P7</th>
+<th class="p">P8</th>
+<th class="p">P9</th>
+
 <th class="ps">PS</th>
 
 </tr>
 
-<tr class="fila-partidos">
+<tr>
 
-<th>Atlante vs América</th>
-<th>Tijuana vs León</th>
-<th>Chivas vs FC Juárez</th>
-<th>Tigres vs Atlético SL</th>
-<th>Santos vs Atlas</th>
-<th>Necaxa vs Monterrey</th>
-<th>Pachuca vs Querétaro</th>
-<th>Toluca vs Cruz Azul</th>
-<th>Sporting KC vs Los Ángeles</th>
-<th class="ps">Chicago Fire vs New YorkC</th>
+<th class="partido">Atlante vs América</th>
+<th class="partido">Tijuana vs León</th>
+<th class="partido">Chivas vs FC Juárez</th>
+<th class="partido">Tigres vs Atlético SL</th>
+<th class="partido">Santos vs Atlas</th>
+<th class="partido">Necaxa vs Monterrey</th>
+<th class="partido">Pachuca vs Querétaro</th>
+<th class="partido">Toluca vs Cruz Azul</th>
+<th class="partido">Sporting KC vs Los Ángeles</th>
+
+<th class="partido-ps">Chicago Fire vs New YC</th>
 
 </tr>
 
