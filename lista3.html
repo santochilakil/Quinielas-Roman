@@ -525,7 +525,7 @@ buscar.addEventListener("input", () => {
         contadorBusqueda.textContent="(" + totalCombinaciones + ")";
     }
 
-    if(coincidencias.length===1){
+    if(coincidencias.length===1 && texto.length>=8){
 
         coincidencias[0].primeraFila.classList.add("resaltado");
 
