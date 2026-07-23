@@ -276,6 +276,16 @@ transition:background .3s;
 id="buscar"
 type="text"
 placeholder="🔍 Buscar participante">
+    <div id="contadorBusqueda"
+style="
+text-align:center;
+color:white;
+font-size:14px;
+font-weight:bold;
+margin-top:-8px;
+margin-bottom:10px;
+">
+</div>
     <div style="overflow-x:auto; width:100%;">
 <table id="tablaQuiniela">
 
@@ -460,14 +470,8 @@ ${jugada.map(v=>`<td class="casilla">${v}</td>`).join("")}
 
 cargarLista();   
 const buscar = document.getElementById("buscar");
+const contadorBusqueda = document.getElementById("contadorBusqueda");
 
-buscar.addEventListener("input", () => {
-
-    const texto = buscar.value.trim().toLowerCase();
-
-    document.querySelectorAll("#listaParticipantes tr").forEach(fila=>{
-        fila.classList.remove("resaltado");
-    });
 
     if(texto===""){
         return;
