@@ -35,7 +35,7 @@ background:linear-gradient(
 #d8f0ff 100%
 );
 }
-}
+
 
 .contenedor{
 width:100%;
@@ -433,10 +433,6 @@ async function cargarLista() {
     const snapshot = await getDocs(q);
 
     snapshot.forEach(doc => {
-
-    
-});
-    snapshot.forEach(doc => {
         const datos = doc.data();
 
         const nombre = datos.nombre || "";
@@ -560,7 +556,7 @@ primeraFila.scrollIntoView({
     behavior:"smooth",
     block:"center"
 });
-
+}
 });
 buscar.addEventListener("input", () => {
 
