@@ -499,7 +499,7 @@ buscar.addEventListener("keydown", (e) => {
         }
 
     });
-
+if (participantes.size === 1 && primeraFila) {
    document.querySelectorAll("#listaParticipantes tr").forEach(f=>{
     f.classList.remove("resaltado");
 });
@@ -531,10 +531,18 @@ primeraFila.scrollIntoView({
     block:"center"
 });
         document.querySelectorAll("#listaParticipantes tr").forEach(f=>{
-            f.classList.remove("resaltado");
-        });
+    f.classList.remove("resaltado");
+});
 
-        const nombreBuscado = [...participantes][0];
+buscar.style.border = "4px solid #00ff00";
+buscar.style.boxShadow = "0 0 20px #00ff00";
+
+setTimeout(()=>{
+    buscar.style.border = "";
+    buscar.style.boxShadow = "";
+},500);
+
+const nombreBuscado = [...participantes][0];
 
 filas.forEach(fila => {
 
@@ -542,18 +550,16 @@ filas.forEach(fila => {
         .replace(/^\d+\s*/, "")
         .trim();
 
-    if (nombre === nombreBuscado) {
+    if (nombre === nombreBuscado){
         fila.classList.add("resaltado");
     }
 
 });
 
 primeraFila.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
+    behavior:"smooth",
+    block:"center"
 });
-
-    }
 
 });
 buscar.addEventListener("input", () => {
