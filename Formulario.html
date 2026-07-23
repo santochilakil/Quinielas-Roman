@@ -109,13 +109,13 @@ Continuar
 
 function continuar(){
 
-let nombre=document.getElementById("nombre").value;
+let nombre = document.getElementById("nombre").value.trim();
 
-if(nombre==""){
+if (nombre.length === 0) {
 
-alert("Por favor escribe tu nombre.");
+    alert("Por favor escribe tu nombre.");
 
-return;
+    return;
 
 }
 localStorage.setItem("nombre", nombre);
