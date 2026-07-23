@@ -183,6 +183,31 @@ position:sticky;
 top:0;
 z-index:100;
 }
+ /* Todo tu CSS anterior */
+
+.fila-resultados th{
+    background:linear-gradient(#ffd84d,#d4a300);
+    color:#000;
+    height:36px;
+    text-align:center;
+    font-weight:bold;
+    border:1px solid #999;
+}
+
+.resultado-nombre{
+    background:linear-gradient(#ffd84d,#d4a300)!important;
+    color:#000!important;
+    width:60px;
+}
+
+.fila-resultados th[contenteditable]{
+    background:#fff;
+    cursor:text;
+    font-size:16px;
+    text-transform:uppercase;
+}
+
+</style>
 </style>
 
 </head>
@@ -235,7 +260,22 @@ placeholder="🔍 Buscar participante..."
 <th class="partido-ps">Chicago Fire vs New YC</th>
 
 </tr>
+<tr class="fila-resultados">
 
+    <th class="resultado-nombre">RESULTADOS</th>
+
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+    <th contenteditable="true"></th>
+
+</tr>
 </thead>
 
 <tbody id="listaParticipantes">
