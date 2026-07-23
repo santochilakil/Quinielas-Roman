@@ -463,17 +463,34 @@ const buscar = document.getElementById("buscar");
 
 buscar.addEventListener("input", () => {
 
-    const texto = buscar.value.toLowerCase();
+    const texto = buscar.value.trim().toLowerCase();
+
+    document.querySelectorAll("#listaParticipantes tr").forEach(fila=>{
+        fila.classList.remove("resaltado");
+    });
+
+    if(texto===""){
+        return;
+    }
 
     const filas = tbody.querySelectorAll("tr");
 
-    filas.forEach(fila => {
+    for(const fila of filas){
 
         const nombre = fila.cells[0].textContent.toLowerCase();
 
-        fila.style.display = nombre.includes(texto) ? "" : "none";
+        if(nombre.includes(texto)){
 
-    });
+            fila.classList.add("resaltado");
+
+            fila.scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+            break;
+        }
+    }
 
 });
 </script>
