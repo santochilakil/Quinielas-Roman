@@ -486,37 +486,54 @@ buscar.addEventListener("input", () => {
         return;
     }
 
-    const filas = tbody.querySelectorAll("tr");
+    const filas = [...tbody.querySelectorAll("tr")];
 
-    let total = 0;
-    let primera = null;
+    const participantes = {};
 
     filas.forEach(fila=>{
 
-        const nombre = fila.cells[0].textContent.toLowerCase();
+        let nombre = fila.cells[0].textContent;
 
-        if(nombre.includes(texto)){
+        nombre = nombre.replace(/^\d+\s*/,"").trim();
 
-            total++;
+        if(!participantes[nombre]){
+            participantes[nombre]={
+                total:0,
+                primeraFila:fila
+            };
+        }
 
-            if(!primera){
-                primera = fila;
-            }
+        participantes[nombre].total++;
+
+    });
+
+    let totalCombinaciones = 0;
+    let coincidencias = [];
+
+    Object.keys(participantes).forEach(nombre=>{
+
+        if(nombre.toLowerCase().includes(texto)){
+
+            totalCombinaciones += participantes[nombre].total;
+            coincidencias.push(participantes[nombre]);
 
         }
 
     });
 
-    if(primera){
+    if(totalCombinaciones>0){
+        contadorBusqueda.textContent="(" + totalCombinaciones + ")";
+    }
 
-        primera.classList.add("resaltado");
+    if(coincidencias.length===1){
 
-        primera.scrollIntoView({
+        coincidencias[0].primeraFila.classList.add("resaltado");
+
+        coincidencias[0].primeraFila.scrollIntoView({
             behavior:"smooth",
             block:"center"
         });
 
-        contadorBusqueda.textContent = "(" + total + ")";
     }
 
 });
