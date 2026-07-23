@@ -747,10 +747,8 @@ try{
 
     
 
-    window.open(
-        "https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje),
-        "_blank"
-    );
+    window.location.href =
+"https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje);
 
 }catch(error){
 
