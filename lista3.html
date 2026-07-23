@@ -506,12 +506,24 @@ buscar.addEventListener("keydown", (e) => {
             f.classList.remove("resaltado");
         });
 
-        primeraFila.classList.add("resaltado");
+        const nombreBuscado = [...participantes][0];
 
-        primeraFila.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+filas.forEach(fila => {
+
+    let nombre = fila.cells[0].textContent
+        .replace(/^\d+\s*/, "")
+        .trim();
+
+    if (nombre === nombreBuscado) {
+        fila.classList.add("resaltado");
+    }
+
+});
+
+primeraFila.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+});
 
     }
 
