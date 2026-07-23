@@ -471,7 +471,51 @@ ${jugada.map(v=>`<td class="casilla">${v}</td>`).join("")}
 cargarLista();   
 const buscar = document.getElementById("buscar");
 const contadorBusqueda = document.getElementById("contadorBusqueda");
+buscar.addEventListener("keydown", (e) => {
 
+    if (e.key !== "Enter") return;
+
+    const texto = buscar.value.trim().toLowerCase();
+
+    const filas = [...tbody.querySelectorAll("tr")];
+
+    let primeraFila = null;
+    let participantes = new Set();
+
+    filas.forEach(fila => {
+
+        let nombre = fila.cells[0].textContent
+            .replace(/^\d+\s*/, "")
+            .trim();
+
+        if (nombre.toLowerCase().includes(texto)) {
+
+            participantes.add(nombre);
+
+            if (!primeraFila) {
+                primeraFila = fila;
+            }
+
+        }
+
+    });
+
+    if (participantes.size === 1 && primeraFila) {
+
+        document.querySelectorAll("#listaParticipantes tr").forEach(f=>{
+            f.classList.remove("resaltado");
+        });
+
+        primeraFila.classList.add("resaltado");
+
+        primeraFila.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+});
 buscar.addEventListener("input", () => {
 
     const texto = buscar.value.trim().toLowerCase();
@@ -525,16 +569,11 @@ buscar.addEventListener("input", () => {
         contadorBusqueda.textContent="(" + totalCombinaciones + ")";
     }
 
-    if(coincidencias.length===1 && texto.length>=8){
+   if(coincidencias.length===1){
 
-        coincidencias[0].primeraFila.classList.add("resaltado");
+    coincidencias[0].primeraFila.classList.add("resaltado");
 
-        coincidencias[0].primeraFila.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
-
-    }
+} 
 
 });
     
