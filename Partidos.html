@@ -590,8 +590,13 @@ let totalPago = 0;
 quinielas.forEach(q=>{
 
    totalQuinielas++;
+    if(q.dobles > 0){
     totalDobles += q.dobles;
+}
+
+if(q.triples > 0){
     totalTriples += q.triples;
+}
 
     // Cada quiniela paga según sus propias combinaciones
     totalPago += q.valor * COSTO;
