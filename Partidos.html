@@ -778,14 +778,13 @@ mensaje+="Valor: "+q.valor+"\n\n";
 
 });
 
-mensaje+="Total de quinielas: "+document.getElementById("totalQuinielas").textContent+"\n";
+mensaje+="Apuestas realizadas: "+document.getElementById("totalQuinielas").textContent+"\n";
 
 mensaje+="Total a pagar: "+document.getElementById("totalPago").textContent;
 if(confirm("¿Esta seguro que desea enviar las quinielas por WhatsApp?")){
 
 try{
-console.log(quinielas);
-alert(JSON.stringify(quinielas));
+
     await guardarEnFirebase();
 
     
