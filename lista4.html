@@ -369,7 +369,8 @@ snapshot.forEach(doc => {
 
   const fila = document.createElement("tr");
 
- fila.innerHTML = `
+ fila.innerHTML = 
+  <td>${i===0 ? d.nombre : ""}</td>`
 <td>${q.jugadas[0]}</td>
 <td>${q.jugadas[1]}</td>
 <td>${q.jugadas[2]}</td>
