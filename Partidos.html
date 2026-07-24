@@ -589,7 +589,7 @@ let totalPago = 0;
 
 quinielas.forEach(q=>{
 
-    totalQuinielas += q.valor;
+   totalQuinielas++;
     totalDobles += q.dobles;
     totalTriples += q.triples;
 
@@ -670,7 +670,7 @@ generar(0, []);
 
 for(let i=inicio;i<quinielas.length;i++){
 
-    quinielas[i].valor = datos.valor;
+  quinielas[i].valor = 1;
     quinielas[i].dobles = datos.dobles;
     quinielas[i].triples = datos.triples;
 
