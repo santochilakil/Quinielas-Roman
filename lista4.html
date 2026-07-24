@@ -439,7 +439,24 @@ filaResultados.addEventListener("input", function(e){
 
   if(e.target.tagName !== "TD") return;
 
-  alert("Escribiste: " + e.target.textContent);
+ const columna = e.target.cellIndex;
+
+const filas = document.querySelectorAll("#listaParticipantes tr");
+
+filas.forEach((fila, indice) => {
+
+  if(indice === 0) return;
+
+  fila.cells[columna].style.backgroundColor = "";
+
+  if(
+    fila.cells[columna].textContent.trim().toUpperCase() ===
+    e.target.textContent.trim().toUpperCase()
+  ){
+    fila.cells[columna].style.backgroundColor = "#00ff66";
+  }
+
+});
 
 });
   console.log("Firebase conectado");
