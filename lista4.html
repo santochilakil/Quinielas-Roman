@@ -365,14 +365,18 @@ snapshot.forEach(doc => {
   const d = doc.data();
 
   if(d.estado !== "Pagó") return;
- const fila = document.createElement("tr");
+ d.quinielas.forEach((q, i) => {
 
-fila.innerHTML = `
-<td>${d.nombre}</td>
-<td colspan="11">Participante cargado desde Firebase</td>
+  const fila = document.createElement("tr");
+
+  fila.innerHTML = `
+<td>${i===0 ? d.nombre : ""}</td>
+<td colspan="11">Quiniela ${i+1}</td>
 `;
 
-lista.appendChild(fila);
+  lista.appendChild(fila);
+
+});
 
   console.log(d);
 
