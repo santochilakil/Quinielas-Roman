@@ -285,11 +285,11 @@ mensaje += "QUINIELA " + (i+1) + "\n";
 
 for(let j=0;j<9;j++){
 
-mensaje += "P" + (j+1) + ": " + q.jugadas[j] + "\n";
+mensaje += "P" + (j+1) + ": " + (Array.isArray(q.jugadas[j]) ? q.jugadas[j].join("") : q.jugadas[j]) + "\n";
 
 }
 
-mensaje += "PS: " + q.jugadas[9] + "\n";
+mensaje += "PS: " + (Array.isArray(q.jugadas[9]) ? q.jugadas[9].join("") : q.jugadas[9]) + "\n";
 mensaje += "Valor: " + q.valor + "\n\n";
 
 });
