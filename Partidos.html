@@ -401,7 +401,8 @@ let quinielas=[];
     async function guardarEnFirebase(){
 
   const nombre = localStorage.getItem("nombre") || "Sin nombre";
-
+console.log("Quinielas antes de guardar:", quinielas.length);
+alert("Se guardarán: " + quinielas.length + " quinielas");
   await addDoc(collection(db,"quinielas"),{
 
     nombre: nombre,
