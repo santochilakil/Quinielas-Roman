@@ -773,7 +773,8 @@ mensaje+="Total a pagar: "+document.getElementById("totalPago").textContent;
 if(confirm("¿Esta seguro que desea enviar las quinielas por WhatsApp?")){
 
 try{
-
+console.log(quinielas);
+alert(JSON.stringify(quinielas));
     await guardarEnFirebase();
 
     
