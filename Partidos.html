@@ -401,8 +401,7 @@ let quinielas=[];
     async function guardarEnFirebase(){
 
   const nombre = localStorage.getItem("nombre") || "Sin nombre";
-console.log("Quinielas antes de guardar:", quinielas.length);
-alert("Se guardarán: " + quinielas.length + " quinielas");
+
   await addDoc(collection(db,"quinielas"),{
 
     nombre: nombre,
@@ -743,7 +742,7 @@ mensaje+="Total a pagar: "+document.getElementById("totalPago").textContent;
 if(confirm("¿Esta seguro que desea enviar las quinielas por WhatsApp?")){
 
 try{
-alert("Entré al envío");
+
     await guardarEnFirebase();
 
     
