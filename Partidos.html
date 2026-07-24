@@ -397,7 +397,8 @@ telefono = data.telefono;
 });
 let COSTO = 20;
 
-let quinielas=[];
+let quinielas = [];
+let quinielasOriginales = [];
     async function guardarEnFirebase(){
 
   const nombre = localStorage.getItem("nombre") || "Sin nombre";
@@ -587,7 +588,7 @@ let totalDobles = 0;
 let totalTriples = 0;
 let totalPago = 0;
 
-quinielas.forEach(q=>{
+quinielasOriginales.forEach(q=>{
 
    totalQuinielas++;
     if(q.dobles > 0){
@@ -640,7 +641,12 @@ jugadas.push(seleccion.split(""));
 }
 
 const datos = calcularQuiniela();
-
+quinielasOriginales.push({
+    jugadas: [...jugadas],
+    valor: datos.valor,
+    dobles: datos.dobles,
+    triples: datos.triples
+});
 function generar(indice, actual){
 
     if(indice===jugadas.length){
@@ -700,7 +706,7 @@ const lista=document.getElementById("quinielasGuardadas");
 
 lista.innerHTML="";
 
-if(quinielas.length===0){
+if(quinielasOriginales.length===0){
 
 lista.innerHTML="<p style='color:#777;text-align:center;'>Aún no has agregado ninguna quiniela.</p>";
 
@@ -710,7 +716,7 @@ return;
 
 }
 
-quinielas.forEach((q,indice)=>{
+quinielasOriginales.forEach((q,indice)=>{
 
 const div=document.createElement("div");
 
