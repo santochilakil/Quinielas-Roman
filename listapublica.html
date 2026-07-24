@@ -304,16 +304,16 @@ placeholder="🔍 Buscar participante..."
 
 <td class="resultado-nombre">RESULTADOS</td>
 
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
-<td contenteditable="true"></td>
+<td ></td>
+<td ></td>
+<td ></td>
+<td ></td>
+<td></td>
+<td ></td>
+<td ></td>
+<td ></td>
+<td ></td>
+<td ></td>
 <td class="aciertos-total"></td>
 </tr>
 
@@ -448,58 +448,9 @@ if(!encontrado){
 }
  
 });
-  const filaResultados = document.getElementById("filaResultados");
+  
 
-filaResultados.addEventListener("input", function(e){
 
-  if(e.target.tagName !== "TD") return;
-
- const columna = e.target.cellIndex;
-
-const filas = document.querySelectorAll("#listaParticipantes tr");
-
-filas.forEach((fila, indice) => {
-
-  if(indice === 0) return;
-
-  fila.cells[columna].style.backgroundColor = "";
-
-  if(
-    fila.cells[columna].textContent.trim().toUpperCase() ===
-    e.target.textContent.trim().toUpperCase()
-  ){
-    fila.cells[columna].style.backgroundColor = "#00ff66";
-  }
-let aciertos = 0;
-
-for(let i=1; i<=9; i++){
-
-    const resultado = filaResultados.cells[i].textContent.trim().toUpperCase();
-
-    if(
-        resultado !== "" &&
-        fila.cells[i].textContent.trim().toUpperCase() === resultado
-    ){
-        aciertos++;
-    }
-
-}
-
-if(filaResultados.cells[10].textContent.trim() !== ""){
-
-    if(
-        fila.cells[10].textContent.trim().toUpperCase() ===
-        filaResultados.cells[10].textContent.trim().toUpperCase()
-    ){
-        aciertos++;
-    }
-
-}
-
-fila.cells[11].textContent = aciertos;
-});
-
-});
   console.log("Firebase conectado");
 
 </script>
