@@ -269,6 +269,7 @@ max-width:22px;
 <h1>LISTA PRELIMINAR</h1>
 
 <input
+id="buscador"
 type="text"
 placeholder="🔍 Buscar participante..."
 >
@@ -401,8 +402,38 @@ participantes.forEach(d => {
 
 });
 });
+const buscador = document.getElementById("buscador");
+buscador.addEventListener("keydown", function(e){
 
-console.log("Firebase conectado");
+    if(e.key !== "Enter") return;
+
+    e.preventDefault();
+const texto = buscador.value.trim().toLowerCase();
+const filas = document.querySelectorAll("#listaParticipantes tr");
+let encontrado = false;
+ for (const fila of filas) {
+const nombre = fila.cells[0].textContent.toLowerCase();
+
+if(nombre.includes(texto)){
+    fila.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+});
+fila.style.backgroundColor = "#fff59d";
+
+setTimeout(()=>{
+    fila.style.backgroundColor = "";
+},3000);
+ encontrado = true;
+ break;
+}
+ } 
+if(!encontrado){
+    alert("Participante no encontrado");
+}
+ 
+});
+  console.log("Firebase conectado");
 
 </script>
 </body>
