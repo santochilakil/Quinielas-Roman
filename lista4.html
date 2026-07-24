@@ -266,7 +266,7 @@ max-width:22px;
 <body>
 <img src="Logo.png" class="logo">
 
-<h1>LISTA PRELIMINAR</h1>
+<h1 id="tituloLista">LISTA PRELIMINAR</h1>
 
 <input
 id="buscador"
@@ -359,6 +359,24 @@ appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+  let jornada = [];
+let suplente = [];
+
+fetch("datos/jornada.json")
+.then(r => r.json())
+.then(datos => {
+
+    jornada = datos.partidos;
+    suplente = datos.suplente;
+
+    document.getElementById("tituloLista").innerHTML =
+        "LISTA PRELIMINAR<br><span style='font-size:24px'>JORNADA " +
+        datos.jornada +
+        "</span><br><span style='font-size:16px'>" +
+        datos.titulo +
+        "</span>";
+
+});
   const lista = document.getElementById("listaParticipantes");
   const snapshot = await getDocs(collection(db,"quinielas"));
 let contador = 1;
