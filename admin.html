@@ -275,6 +275,7 @@ window.verQuiniela = async function(id){
 const documento = await getDoc(doc(db,"quinielas",id));
 
 const d = documento.data();
+  alert("Quinielas guardadas: " + d.quinielas.length);
 
 let mensaje = "👤 " + d.nombre + "\n\n";
 
