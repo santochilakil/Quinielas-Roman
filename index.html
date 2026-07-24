@@ -110,8 +110,8 @@ PRONOSTICA LOS RESULTADOS Y PARTICIPA POR EL PREMIO
 fetch("datos/jornada.json")
 .then(r => r.json())
 .then(datos => {
-    document.getElementById("jornadaTitulo").innerHTML =
-        "JORNADA " + datos.jornada;
+document.getElementById("jornadaTitulo").innerHTML =
+    "JORNADA " + datos.jornada + "<br><span style='font-size:18px'>" + datos.titulo + "</span>";    
 });
 </script>
 </body>
