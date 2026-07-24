@@ -88,7 +88,9 @@ margin:20px 0;
 </div>
 
 </div>
-  <h2 style="margin-top:30px;">⚙️ Configuración de la Jornada</h2>
+<h2 id="tituloAdmin" style="margin-top:30px;">
+⚙️ Configuración de la Jornada
+</h2>
 
 <div id="configJornada" style="
 background:white;
@@ -191,7 +193,20 @@ appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+fetch("datos/jornada.json")
+.then(r => r.json())
+.then(datos => {
 
+    document.getElementById("tituloAdmin").innerHTML =
+        "⚙️ Configuración de la Jornada<br>" +
+        "<span style='font-size:22px'>JORNADA " +
+        datos.jornada +
+        "</span><br>" +
+        "<span style='font-size:16px'>" +
+        datos.titulo +
+        "</span>";
+
+});
 const btnGuardarJornada = document.getElementById("guardarJornada");
 
 const tabla = document.getElementById("datos");
