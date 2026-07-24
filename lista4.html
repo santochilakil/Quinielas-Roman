@@ -370,23 +370,21 @@ snapshot.forEach(doc => {
   const fila = document.createElement("tr");
 
  fila.innerHTML = `
-<td>${i===0 ? d.nombre : ""}</td>
-<td>${q.P1}</td>
-<td>${q.P2}</td>
-<td>${q.P3}</td>
-<td>${q.P4}</td>
-<td>${q.P5}</td>
-<td>${q.P6}</td>
-<td>${q.P7}</td>
-<td>${q.P8}</td>
-<td>${q.P9}</td>
-<td>${q.PS}</td>
+<td>${q.jugadas[0]}</td>
+<td>${q.jugadas[1]}</td>
+<td>${q.jugadas[2]}</td>
+<td>${q.jugadas[3]}</td>
+<td>${q.jugadas[4]}</td>
+<td>${q.jugadas[5]}</td>
+<td>${q.jugadas[6]}</td>
+<td>${q.jugadas[7]}</td>
+<td>${q.jugadas[8]}</td>
+<td>${q.jugadas[9]}</td>
 <td></td>
 `;
 
   lista.appendChild(fila);
 
-alert(JSON.stringify(d.quinielas[0]));
 
 });
 
