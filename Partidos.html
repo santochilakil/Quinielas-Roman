@@ -634,16 +634,47 @@ jugadas.push(seleccion);
 
 }
 
-const datos=calcularQuiniela();
+const datos = calcularQuiniela();
 
-quinielas.push({
+function generar(indice, actual){
 
-jugadas:jugadas,
-valor:datos.valor,
-dobles:datos.dobles,
-triples:datos.triples
+    if(indice===jugadas.length){
 
-});
+        quinielas.push({
+            jugadas:[...actual],
+            valor:1,
+            dobles:0,
+            triples:0
+        });
+
+        return;
+    }
+
+    const opciones = jugadas[indice];
+
+    for(const letra of opciones){
+
+        actual.push(letra);
+
+        generar(indice+1, actual);
+
+        actual.pop();
+
+    }
+
+}
+
+const inicio = quinielas.length;
+
+generar(0, []);
+
+for(let i=inicio;i<quinielas.length;i++){
+
+    quinielas[i].valor = datos.valor;
+    quinielas[i].dobles = datos.dobles;
+    quinielas[i].triples = datos.triples;
+
+}
 
 const lista=document.getElementById("quinielasGuardadas");
 
