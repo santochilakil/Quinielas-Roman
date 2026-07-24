@@ -361,6 +361,14 @@ const db = getFirestore(app);
   const lista = document.getElementById("listaParticipantes");
   const snapshot = await getDocs(collection(db,"quinielas"));
 let contador = 1;
+  const participantes = [];
+
+participantes.forEach(d => {
+    participantes.push(d);
+  }
+});
+
+participantes.sort((a,b)=>a.nombre.localeCompare(b.nombre,"es"));
 console.log("Quinielas encontradas:", snapshot.size);
 
 snapshot.forEach(doc => {
