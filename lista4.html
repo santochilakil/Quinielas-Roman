@@ -433,6 +433,15 @@ if(!encontrado){
 }
  
 });
+  const filaResultados = document.getElementById("filaResultados");
+
+filaResultados.addEventListener("input", function(e){
+
+  if(e.target.tagName !== "TD") return;
+
+  alert("Escribiste: " + e.target.textContent);
+
+});
   console.log("Firebase conectado");
 
 </script>
