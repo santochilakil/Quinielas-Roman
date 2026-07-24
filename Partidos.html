@@ -384,13 +384,25 @@ suplente = data.suplente;
 COSTO = data.costo;
     numeroJornada = data.jornada;
 telefono = data.telefono;
-    const titulo = document.getElementById("tituloJornada");
-    if (titulo) {
-        titulo.innerHTML = `
-            <img src="Logo.png" class="logoTitulo">
-            QUINIELAS CANCÚN 
-        `;
-    }
+const titulo = document.getElementById("tituloJornada");
+if (titulo) {
+    titulo.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <img src="Logo.png" class="logoTitulo">
+                <span>QUINIELAS CANCÚN</span>
+            </div>
+
+            <div style="font-size:22px;font-weight:bold;margin-top:6px;">
+                JORNADA ${data.jornada}
+            </div>
+
+            <div style="font-size:16px;margin-top:4px;">
+                ${data.titulo}
+            </div>
+        </div>
+    `;
+}   
 
     cargarJornada();
 
