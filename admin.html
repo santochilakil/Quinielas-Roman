@@ -205,6 +205,12 @@ fetch("datos/jornada.json")
         "<span style='font-size:16px'>" +
         datos.titulo +
         "</span>";
+   document.getElementById("partidosJornada").value =
+    datos.partidos.map(p => p[0] + " vs " + p[1]).join("\n") +
+    "\n\nPS: " +
+    datos.suplente[0] +
+    " vs " +
+    datos.suplente[1]; 
 
 });
 const btnGuardarJornada = document.getElementById("guardarJornada");
