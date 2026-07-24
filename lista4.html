@@ -360,11 +360,11 @@ fetch("datos/jornada.json")
     suplente = datos.suplente;
 
     document.getElementById("tituloLista").innerHTML =
-        "LISTA PRELIMINAR<br><span style='font-size:24px'>JORNADA " +
-        datos.jornada +
-        "</span><br><span style='font-size:16px'>" +
-        datos.titulo +
-        "</span>";
+    "<span style='font-size:38px; color:#FFD700; font-weight:900; text-shadow:2px 2px 4px #000;'>JORNADA " +
+    datos.jornada +
+    "</span><br><span style='font-size:22px; color:#FFD700; font-weight:bold; text-shadow:2px 2px 4px #000;'>" +
+    datos.titulo +
+    "</span>";
  
 const fila = document.getElementById("filaPartidos");
 
