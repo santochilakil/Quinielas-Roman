@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lista 4 - Quinielas Cancún</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+min-height:100vh;
+background:linear-gradient(180deg,#0b3f8f 0%,#2b6fd1 45%,#0b3f8f 100%);
+display:flex;
+justify-content:flex-start;
+align-items:center;
+flex-direction:column;
+padding:20px 5px;
+}
+ .logo{
+width:120px;
+height:auto;
+display:block;
+margin:0 auto 8px;
+} 
+ h1{
+margin:12px 0 18px;
+font-size:50px;
+font-weight:900;
+line-height:0.95;
+text-align:center;
+letter-spacing:1px;
+background:transparent;
+/* -webkit-background-clip:text;*/
+/*-webkit-text-fill-color:transparent;*/
+color:#FFD700;
+  text-shadow:
+0 1px 1px rgba(255,255,255,.8),
+0 2px 4px rgba(0,0,0,.35);
+}
+input{
+width:50%;
+max-width:260px;
+height:38px;
+padding:0 16px;
+font-size:22px;
+font-weight:bold;
+color:#003366;
+background:linear-gradient(
+to bottom,
+#eefcff 0%,
+#b9efff 18%,
+#82dcff 40%,
+#47c4ff 65%,
+#a9ecff 100%
+);
+border:2px solid #d9f8ff;
+border-radius:35px;
+outline:none;
+box-shadow:
+0 4px 10px rgba(0,0,0,.25),
+inset 0 2px 4px rgba(255,255,255,.9);
+transition:.30s;
+}
+
+input::placeholder{
+color:#1b4d7a;
+font-weight:bold;
+}
+
+input:focus{
+transform:scale(1.03);
+border-color:#ffffff;
+box-shadow:
+0 0 15px #8fe9ff,
+0 0 30px #5fd8ff,
+0 0 45px rgba(120,220,255,.7),
+inset 0 2px 5px rgba(255,255,255,.95);
+} 
+.tabla-contenedor{
+width:100%;
+padding:0 3px;
+margin-top:25px;
+overflow-x:auto;
+}
+
+.tabla{
+border-collapse:collapse;
+width:auto;
+background:#fff;
+margin:auto;
+}
+.tabla th,
+.tabla td{
+border:2px solid #2a2a2a;
+text-align:center;
+padding:0;
+}
+
+.participante{
+width:95px;
+min-width:95px;
+
+background:linear-gradient(to bottom,#5f5f5f,#1f1f1f,#000000,#4a4a4a);
+color:#fff;
+font-size:11px;
+font-weight:bold;
+text-shadow:1px 1px 2px #000;
+}
+
+.p{
+width:26px;
+height:24px;
+background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+color:#000;
+font-size:10px;
+font-weight:bold;
+}
+.ps{
+width:26px;
+height:24px;
+background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+color:#000;
+font-size:10px;
+font-weight:bold;
+}
+
+.partido{
+width:26px;
+height:90px;
+background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+color:#000;
+writing-mode:vertical-rl;
+transform:rotate(180deg);
+font-size:7px;
+font-weight:bold;
+padding:4px 2px;
+}
+
+.partido-ps{
+width:26px;
+height:90px;
+background:linear-gradient(to bottom,#ffd19a,#ff9f1c,#ff7b00,#ffc07a);
+color:#000;
+writing-mode:vertical-rl;
+transform:rotate(180deg);
+font-size:7px;
+font-weight:bold;
+padding:4px 2px;
+}
+
+#listaParticipantes td{
+height:14px;
+font-size:9px;
+font-weight:bold;
+background:#fff;
+color:#000;
+padding:0;
+line-height:1;
+}
+
+#listaParticipantes td:first-child{
+background:#000;
+color:#fff;
+text-align:left;
+width:95px;
+min-width:95px;
+font-size:10px;
+padding-left:5px;
+line-height:1;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+}
+thead{
+position:sticky;
+top:0;
+z-index:100;
+}
+ /* Todo tu CSS anterior */
+
+#listaParticipantes .fila-resultados td{
+    width:26px;
+    min-width:26px;
+    height:24px;
+    background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+    color:#000;
+    text-align:center;
+    font-weight:bold;
+    border:2px solid #2a2a2a;
+    padding:0;
+}
+
+.resultado-nombre{
+    width:60px;
+    min-width:60px;
+    background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b)!important;
+    color:#000!important;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.fila-resultados td[contenteditable]{
+    width:24px;
+    min-width:24px;
+    height:8px;
+    background:linear-gradient(to bottom,#fff6a0,#ffd84c,#ffc800,#ffe98b);
+    color:#000;
+    text-align:center;
+    vertical-align:middle;
+    font-size:14px;
+    font-weight:bold;
+    text-transform:uppercase;
+    padding:0;
+    border:2px solid #2a2a2a;
+}
+ .aciertos{
+    width:22px;
+min-width:22px;
+max-width:22px;
+    height:90px;
+    background:linear-gradient(to bottom,#c6ff00,#8cff00,#58d600);
+    color:#fff;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    text-align:center;
+    vertical-align:middle;
+    font-size:10px;
+    font-weight:bold;
+    text-shadow:1px 1px 2px #000;
+    border:2px solid #2a2a2a;
+    padding:4px 2px;
+}
+.aciertos-total{
+    width:22px;
+min-width:22px;
+max-width:22px;
+    height:24px;
+    background:linear-gradient(to bottom,#c6ff00,#8cff00,#58d600) !important;
+    color:#fff;
+    border:2px solid #2a2a2a;
+    text-align:center;
+    font-size:14px;
+    font-weight:bold;
+    padding:0;
+}
+</style>
+
+
+</head>
+
+<body>
+<img src="Logo.png" class="logo">
+
+<h1 id="tituloLista">LISTA PRELIMINAR</h1>
+
+<input
+id="buscador"
+type="text"
+placeholder="🔍 Buscar participante..."
+>
+<div class="tabla-contenedor">
+
+<table class="tabla">
+
+<thead>
+
+<tr>
+
+<th class="participante" rowspan="2">Participante</th>
+
+<th class="p">P1</th>
+<th class="p">P2</th>
+<th class="p">P3</th>
+<th class="p">P4</th>
+<th class="p">P5</th>
+<th class="p">P6</th>
+<th class="p">P7</th>
+<th class="p">P8</th>
+<th class="p">P9</th>
+
+<th class="ps">PS</th>
+<th class="aciertos" rowspan="2">ACIERTOS</th>
+
+</tr>
+
+
+
+<tr id="filaPartidos"></tr>
+
+</thead>
+
+<tbody id="listaParticipantes">
+
+<tr class="fila-resultados" id="filaResultados">
+
+<td class="resultado-nombre">RESULTADOS</td>
+
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td class="aciertos-total"></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+ <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
+authDomain:"quinielas-cancun.firebaseapp.com",
+projectId:"quinielas-cancun",
+storageBucket:"quinielas-cancun.firebasestorage.app",
+messagingSenderId:"419348494986",
+appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+  let jornada = [];
+let suplente = [];
+
+fetch("datos/jornada.json")
+.then(r => r.json())
+.then(datos => {
+
+    jornada = datos.partidos;
+    suplente = datos.suplente;
+
+    document.getElementById("tituloLista").innerHTML =
+    "<span style='font-size:38px; color:#FFD700; font-weight:900; text-shadow:2px 2px 4px #000;'>JORNADA " +
+    datos.jornada +
+    "</span><br><span style='font-size:22px; color:#FFD700; font-weight:bold; text-shadow:2px 2px 4px #000;'>" +
+    datos.titulo +
+    "</span>";
+ 
+const fila = document.getElementById("filaPartidos");
+
+fila.innerHTML = "";
+
+datos.partidos.forEach(p => {
+
+    fila.innerHTML +=
+        `<th class="partido">${p[0]} vs ${p[1]}</th>`;
+
+});
+
+fila.innerHTML +=
+    `<th class="partido-ps">${datos.suplente[0]} vs ${datos.suplente[1]}</th>`;
+});
+  const lista = document.getElementById("listaParticipantes");
+  const snapshot = await getDocs(collection(db,"quinielas"));
+let contador = 1;
+console.log("Quinielas encontradas:", snapshot.size);
+const participantes = [];
+
+snapshot.forEach(doc => {
+    const d = doc.data();
+
+    if (d.estado === "Pagó") {
+        participantes.push(d);
+    }
+});
+
+participantes.sort((a,b)=>a.nombre.localeCompare(b.nombre,"es"));
+participantes.forEach(d => {
+
+
+
+  
+ d.quinielas.forEach((q, i) => {
+
+  const fila = document.createElement("tr");
+
+ fila.innerHTML = `
+<td>${contador++} ${d.nombre}</td>
+<td>${q.jugadas[0]}</td>
+<td>${q.jugadas[1]}</td>
+<td>${q.jugadas[2]}</td>
+<td>${q.jugadas[3]}</td>
+<td>${q.jugadas[4]}</td>
+<td>${q.jugadas[5]}</td>
+<td>${q.jugadas[6]}</td>
+<td>${q.jugadas[7]}</td>
+<td>${q.jugadas[8]}</td>
+<td>${q.jugadas[9]}</td>
+<td class="aciertos-total">0</td>
+`;
+
+  lista.appendChild(fila);
+
+});
+});
+const buscador = document.getElementById("buscador");
+buscador.addEventListener("keydown", function(e){
+
+    if(e.key !== "Enter") return;
+
+    e.preventDefault();
+const texto = buscador.value.trim().toLowerCase();
+const filas = document.querySelectorAll("#listaParticipantes tr");
+let encontrado = false;
+ for (const fila of filas) {
+const nombre = fila.cells[0].textContent.toLowerCase();
+
+if(nombre.includes(texto)){
+    fila.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+});
+fila.style.backgroundColor = "#fff59d";
+
+setTimeout(()=>{
+    fila.style.backgroundColor = "";
+},3000);
+ encontrado = true;
+ break;
+}
+ } 
+if(!encontrado){
+    alert("Participante no encontrado");
+}
+ 
+});
+  const filaResultados = document.getElementById("filaResultados");
+
+filaResultados.addEventListener("input", function(e){
+
+  if(e.target.tagName !== "TD") return;
+
+ const columna = e.target.cellIndex;
+
+const filas = document.querySelectorAll("#listaParticipantes tr");
+
+filas.forEach((fila, indice) => {
+
+  if(indice === 0) return;
+
+  fila.cells[columna].style.backgroundColor = "";
+
+  if(
+    fila.cells[columna].textContent.trim().toUpperCase() ===
+    e.target.textContent.trim().toUpperCase()
+  ){
+    fila.cells[columna].style.backgroundColor = "#00ff66";
+  }
+let aciertos = 0;
+
+for(let i=1; i<=9; i++){
+
+    const resultado = filaResultados.cells[i].textContent.trim().toUpperCase();
+
+    if(
+        resultado !== "" &&
+        fila.cells[i].textContent.trim().toUpperCase() === resultado
+    ){
+        aciertos++;
+    }
+
+}
+
+if(filaResultados.cells[10].textContent.trim() !== ""){
+
+    if(
+        fila.cells[10].textContent.trim().toUpperCase() ===
+        filaResultados.cells[10].textContent.trim().toUpperCase()
+    ){
+        aciertos++;
+    }
+
+}
+
+fila.cells[11].textContent = aciertos;
+});
+
+});
+  console.log("Firebase conectado");
+
+</script>
+</body>
+
+</html>
