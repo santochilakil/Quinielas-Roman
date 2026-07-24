@@ -300,18 +300,8 @@ placeholder="🔍 Buscar participante..."
 
 <tr>
 
-<th class="partido">Atlante vs América</th>
-<th class="partido">Tijuana vs León</th>
-<th class="partido">Chivas vs FC Juárez</th>
-<th class="partido">Tigres vs Atlético SL</th>
-<th class="partido">Santos vs Atlas</th>
-<th class="partido">Necaxa vs Monterrey</th>
-<th class="partido">Pachuca vs Querétaro</th>
-<th class="partido">Toluca vs Cruz Azul</th>
-<th class="partido">Sporting KC vs Los Ángeles</th>
+<tr id="filaPartidos"></tr>
 
-<th class="partido-ps">Chicago Fire vs New YC</th>
-</tr>
 </thead>
 
 <tbody id="listaParticipantes">
@@ -375,7 +365,20 @@ fetch("datos/jornada.json")
         "</span><br><span style='font-size:16px'>" +
         datos.titulo +
         "</span>";
+ 
+const fila = document.getElementById("filaPartidos");
 
+fila.innerHTML = "";
+
+datos.partidos.forEach(p => {
+
+    fila.innerHTML +=
+        `<th class="partido">${p[0]} vs ${p[1]}</th>`;
+
+});
+
+fila.innerHTML +=
+    `<th class="partido-ps">${datos.suplente[0]} vs ${datos.suplente[1]}</th>`;
 });
   const lista = document.getElementById("listaParticipantes");
   const snapshot = await getDocs(collection(db,"quinielas"));
