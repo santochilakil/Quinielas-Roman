@@ -395,7 +395,7 @@ participantes.forEach(d => {
 <td>${q.jugadas[7]}</td>
 <td>${q.jugadas[8]}</td>
 <td>${q.jugadas[9]}</td>
-<td></td>
+<td class="aciertos-total">0</td>
 `;
 
   lista.appendChild(fila);
@@ -455,7 +455,33 @@ filas.forEach((fila, indice) => {
   ){
     fila.cells[columna].style.backgroundColor = "#00ff66";
   }
+let aciertos = 0;
 
+for(let i=1; i<=9; i++){
+
+    const resultado = filaResultados.cells[i].textContent.trim().toUpperCase();
+
+    if(
+        resultado !== "" &&
+        fila.cells[i].textContent.trim().toUpperCase() === resultado
+    ){
+        aciertos++;
+    }
+
+}
+
+if(filaResultados.cells[10].textContent.trim() !== ""){
+
+    if(
+        fila.cells[10].textContent.trim().toUpperCase() ===
+        filaResultados.cells[10].textContent.trim().toUpperCase()
+    ){
+        aciertos++;
+    }
+
+}
+
+fila.cells[11].textContent = aciertos;
 });
 
 });
