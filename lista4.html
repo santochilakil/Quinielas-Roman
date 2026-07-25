@@ -486,10 +486,10 @@ filas.forEach(fila=>{
     const aciertos = parseInt(fila.cells[11].textContent) || 0;
 
     if(aciertos === mayorAciertos){
-        fila.cells[11].style.background = "#7CFC00";
+        fila.cells[11].style.setProperty("background","#7CFC00","important");
         fila.cells[11].style.color = "#000";
     }else{
-        fila.cells[11].style.background = "#FFF9C4";
+        fila.cells[11].style.setProperty("background","#FFF9C4","important");
         fila.cells[11].style.color = "#000";
     }
 
