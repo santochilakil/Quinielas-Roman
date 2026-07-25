@@ -275,8 +275,12 @@ placeholder="🔍 Buscar participante..."
 <thead>
 
 <tr>
+<th class="participante" rowspan="2" id="premioEncabezado">
+    <div style="font-size:13px;color:#FFD700;font-weight:bold;">PREMIO</div>
+    <div id="premioTotal" style="font-size:16px;color:#fff;margin-top:2px;">$0</div>
+    <div style="margin-top:18px;">PARTICIPANTE</div>
+</th>
 
-<th class="participante" rowspan="2">Participante</th>
 
 <th class="p">P1</th>
 <th class="p">P2</th>
@@ -418,6 +422,13 @@ participantes.forEach(d => {
 
 });
 });
+  const COSTO_QUINIELA = 20;
+
+const totalQuinielas = contador - 1;
+const premio = Math.floor(totalQuinielas * COSTO_QUINIELA * 0.70);
+
+document.getElementById("premioTotal").textContent =
+"$" + premio.toLocaleString("es-MX");
 const buscador = document.getElementById("buscador");
 buscador.addEventListener("keydown", function(e){
 
