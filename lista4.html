@@ -449,7 +449,41 @@ if(!encontrado){
  
 });
   const filaResultados = document.getElementById("filaResultados");
+function ordenarParticipantes(){
 
+    const filas = Array.from(lista.querySelectorAll("tr"))
+        .filter(f => !f.classList.contains("fila-resultados"));
+
+    filas.sort((a,b)=>{
+
+        const aciertosA = parseInt(a.cells[11].textContent) || 0;
+        const aciertosB = parseInt(b.cells[11].textContent) || 0;
+
+        // Mayor número de aciertos primero
+        if(aciertosA !== aciertosB){
+            return aciertosB - aciertosA;
+        }
+
+        // Si empatan, ordenar por nombre
+        const nombreA = a.cells[0].textContent.replace(/^\d+\s*/,"").trim();
+        const nombreB = b.cells[0].textContent.replace(/^\d+\s*/,"").trim();
+
+        return nombreA.localeCompare(nombreB,"es");
+    });
+
+    let numero = 1;
+
+    filas.forEach(fila=>{
+
+        const nombre = fila.cells[0].textContent.replace(/^\d+\s*/,"").trim();
+
+        fila.cells[0].textContent = numero++ + " " + nombre;
+
+        lista.appendChild(fila);
+
+    });
+
+}
 filaResultados.addEventListener("input", function(e){
 
   if(e.target.tagName !== "TD") return;
@@ -498,7 +532,7 @@ if(filaResultados.cells[10].textContent.trim() !== ""){
 
 fila.cells[11].textContent = aciertos;
 });
-
+ordenarParticipantes();
 });
   console.log("Firebase conectado");
 
