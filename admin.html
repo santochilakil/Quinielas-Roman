@@ -108,16 +108,43 @@ margin-bottom:20px;
 
 <br><br>
 
-<label><strong>Mensaje para los participantes</strong></label>
+<label><strong>Número de Jornada</strong></label>
 <br><br>
 
 <input
-id="mensajeLista"
-type="text"
-style="width:100%;padding:10px;"
-placeholder="Ej. Quedan 2 horas para modificar">
+id="numeroJornada"
+type="number"
+style="width:180px;padding:10px;"
+placeholder="Ej. 1">
 
 <br><br>
+
+<label><strong>Costo por Quiniela ($)</strong></label>
+<br><br>
+
+<input
+id="costoJornada"
+type="number"
+style="width:180px;padding:10px;"
+placeholder="Ej. 30">
+
+<br><br>
+
+<label><strong>Estado de la Jornada</strong></label>
+<br><br>
+
+<select
+id="estadoJornada"
+style="padding:8px;width:220px;">
+
+<option value="abierta">🟢 Abierta</option>
+<option value="cerrada">🟡 Cerrada</option>
+<option value="finalizada">🔴 Finalizada</option>
+
+</select>
+
+<br><br>
+
 
 <label><strong>Partidos de la jornada</strong></label>
 <br><br>
@@ -211,6 +238,11 @@ fetch("datos/jornada.json")
     datos.suplente[0] +
     " vs " +
     datos.suplente[1]; 
+    document.getElementById("numeroJornada").value = datos.jornada || "";
+
+document.getElementById("costoJornada").value = datos.costo || "";
+
+document.getElementById("estadoJornada").value = datos.estado || "abierta";
 
 });
 const btnGuardarJornada = document.getElementById("guardarJornada");
