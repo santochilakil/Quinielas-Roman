@@ -473,15 +473,29 @@ function ordenarParticipantes(){
 
     let numero = 1;
 
-    filas.forEach(fila=>{
+  const mayorAciertos = Math.max(
+    ...filas.map(f => parseInt(f.cells[11].textContent) || 0)
+);
 
-        const nombre = fila.cells[0].textContent.replace(/^\d+\s*/,"").trim();
+filas.forEach(fila=>{
 
-        fila.cells[0].textContent = numero++ + " " + nombre;
+    const nombre = fila.cells[0].textContent.replace(/^\d+\s*/,"").trim();
 
-        lista.appendChild(fila);
+    fila.cells[0].textContent = numero++ + " " + nombre;
 
-    });
+    const aciertos = parseInt(fila.cells[11].textContent) || 0;
+
+    if(aciertos === mayorAciertos){
+        fila.cells[11].style.background = "#7CFC00";
+        fila.cells[11].style.color = "#000";
+    }else{
+        fila.cells[11].style.background = "#FFF9C4";
+        fila.cells[11].style.color = "#000";
+    }
+
+    lista.appendChild(fila);
+
+});  
 
 }
 filaResultados.addEventListener("input", function(e){
