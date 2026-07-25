@@ -434,10 +434,24 @@ if(nombre.includes(texto)){
     behavior: "smooth",
     block: "center"
 });
-fila.style.backgroundColor = "#fff59d";
+
+// Resaltar toda la fila
+fila.style.transition = "all .3s";
+
+for(let i=0; i<fila.cells.length; i++){
+    fila.cells[i].style.setProperty("background","#FFF176","important");
+    fila.cells[i].style.color = "#000";
+    fila.cells[i].style.fontWeight = "bold";
+}
 
 setTimeout(()=>{
-    fila.style.backgroundColor = "";
+
+    for(let i=0; i<fila.cells.length; i++){
+        fila.cells[i].style.backgroundColor = "";
+        fila.cells[i].style.color = "";
+        fila.cells[i].style.fontWeight = "";
+    }
+
 },3000);
  encontrado = true;
  break;
