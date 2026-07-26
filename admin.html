@@ -875,17 +875,21 @@ const btnGuardarJornada = document.getElementById("guardarJornada");
 
 btnGuardarJornada.addEventListener("click", async () => {
 
-    await setDoc(doc(db,"config","jornada"),{
+ await setDoc(doc(db,"config","jornada"),{
 
-        jornada: Number(document.getElementById("numeroJornada").value),
+    jornada: Number(document.getElementById("numeroJornada").value),
 
-        costo: Number(document.getElementById("costoJornada").value),
+    costo: Number(document.getElementById("costoJornada").value),
 
-        estado: document.getElementById("estadoJornada").value,
+    estado: document.getElementById("estadoJornada").value,
 
-        estadoLista: document.getElementById("estadoLista").value
+    estadoLista: document.getElementById("estadoLista").value,
 
-    });
+    fechaInicio: document.getElementById("fechaInicio").value,
+
+    fechaFin: document.getElementById("fechaFin").value
+
+});  
 
     alert("Configuración guardada correctamente");
 
