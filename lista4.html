@@ -526,61 +526,52 @@ filas.forEach(fila=>{
 });  
 
 }
-filaResultados.addEventListener("input", function(e){
+function actualizarTabla(){
 
-  if(e.target.tagName !== "TD") return;
+    const filas = document.querySelectorAll("#listaParticipantes tr");
 
- const columna = e.target.cellIndex;
+    filas.forEach((fila, indice)=>{
 
-const filas = document.querySelectorAll("#listaParticipantes tr");
+        if(indice===0) return;
 
-filas.forEach((fila, indice) => {
+        let aciertos = 0;
 
-  if(indice === 0) return;
+        for(let c=1;c<=10;c++){
 
-  fila.cells[columna].style.backgroundColor = "";
+            const resultado=filaResultados.cells[c].textContent.trim().toUpperCase();
+            const celda=fila.cells[c];
 
-  if(
-    fila.cells[columna].textContent.trim().toUpperCase() ===
-    e.target.textContent.trim().toUpperCase()
-  ){
-    fila.cells[columna].style.backgroundColor = "#00ff66";
-  }
-let aciertos = 0;
+            celda.style.backgroundColor="";
 
-for(let i=1; i<=9; i++){
+            if(
+                resultado!=="" &&
+                celda.textContent.trim().toUpperCase()===resultado
+            ){
+                celda.style.backgroundColor="#00ff66";
+                aciertos++;
+            }
 
-    const resultado = filaResultados.cells[i].textContent.trim().toUpperCase();
+        }
 
-    if(
-        resultado !== "" &&
-        fila.cells[i].textContent.trim().toUpperCase() === resultado
-    ){
-        aciertos++;
-    }
+        fila.cells[11].textContent=aciertos;
 
-}
+    });
 
-if(filaResultados.cells[10].textContent.trim() !== ""){
-
-    if(
-        fila.cells[10].textContent.trim().toUpperCase() ===
-        filaResultados.cells[10].textContent.trim().toUpperCase()
-    ){
-        aciertos++;
-    }
+    ordenarParticipantes();
 
 }
 
-fila.cells[11].textContent = aciertos;
+filaResultados.addEventListener("input",()=>{
+
+    actualizarTabla();
+
 });
-ordenarParticipantes();
-});
- const configDoc = await getDoc(doc(db,"config","jornada"));
+
+const configDoc = await getDoc(doc(db,"config","jornada"));
 
 if(configDoc.exists()){
 
-    const config = configDoc.data();
+    const config=configDoc.data();
 
     if(config.partidos){
 
@@ -588,39 +579,17 @@ if(configDoc.exists()){
 
             if(p.resultado){
 
-                filaResultados.cells[i+1].textContent = p.resultado;
+                filaResultados.cells[i+1].textContent=p.resultado;
 
             }
 
         });
 
-      for(let c=1;c<=10;c++){
-
-    const resultado=filaResultados.cells[c].textContent.trim().toUpperCase();
-
-    if(resultado==="") continue;
-
-    document.querySelectorAll("#listaParticipantes tr").forEach((fila,indice)=>{
-
-        if(indice===0) return;
-
-        fila.cells[c].style.backgroundColor="";
-
-        if(fila.cells[c].textContent.trim().toUpperCase()===resultado){
-            fila.cells[c].style.backgroundColor="#00ff66";
-        }
-
-    });
-
-}
-
-filaResultados.dispatchEvent(
-    new Event("input",{bubbles:true})
-);  
+        actualizarTabla();
 
     }
 
-} 
+}
   console.log("Firebase conectado");
 
 </script>
