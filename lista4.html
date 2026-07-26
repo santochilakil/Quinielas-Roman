@@ -594,9 +594,29 @@ if(configDoc.exists()){
 
         });
 
-        filaResultados.dispatchEvent(
-            new Event("input",{bubbles:true})
-        );
+      for(let c=1;c<=10;c++){
+
+    const resultado=filaResultados.cells[c].textContent.trim().toUpperCase();
+
+    if(resultado==="") continue;
+
+    document.querySelectorAll("#listaParticipantes tr").forEach((fila,indice)=>{
+
+        if(indice===0) return;
+
+        fila.cells[c].style.backgroundColor="";
+
+        if(fila.cells[c].textContent.trim().toUpperCase()===resultado){
+            fila.cells[c].style.backgroundColor="#00ff66";
+        }
+
+    });
+
+}
+
+filaResultados.dispatchEvent(
+    new Event("input",{bubbles:true})
+);  
 
     }
 
