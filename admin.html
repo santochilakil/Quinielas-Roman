@@ -245,7 +245,8 @@ document.getElementById("costoJornada").value = datos.costo || "";
 document.getElementById("estadoJornada").value = datos.estado || "abierta";
 
 });
-const btnGuardarJornada = document.getElementById("guardarJornada");const tabla = document.getElementById("datos");
+const btnGuardarJornada = document.getElementById("guardarJornada");
+
 btnGuardarJornada.addEventListener("click", async () => {
 
     await setDoc(doc(db,"config","jornada"),{
@@ -255,6 +256,10 @@ btnGuardarJornada.addEventListener("click", async () => {
     alert("Configuración creada correctamente");
 
 });
+
+const tabla = document.getElementById("datos");
+tabla.innerHTML = "";
+
 const q = query(collection(db,"quinielas"),orderBy("fecha","desc"));
 
 const snapshot = await getDocs(q);
