@@ -334,7 +334,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/fireba
 import {
 getFirestore,
 collection,
-getDocs
+getDocs,
+doc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -574,6 +576,31 @@ fila.cells[11].textContent = aciertos;
 });
 ordenarParticipantes();
 });
+ const configDoc = await getDoc(doc(db,"config","jornada"));
+
+if(configDoc.exists()){
+
+    const config = configDoc.data();
+
+    if(config.partidos){
+
+        config.partidos.forEach((p,i)=>{
+
+            if(p.resultado){
+
+                filaResultados.cells[i+1].textContent = p.resultado;
+
+            }
+
+        });
+
+        filaResultados.dispatchEvent(
+            new Event("input",{bubbles:true})
+        );
+
+    }
+
+} 
   console.log("Firebase conectado");
 
 </script>
