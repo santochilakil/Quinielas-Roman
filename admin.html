@@ -201,6 +201,7 @@ getFirestore,
 collection,
 getDocs,
 getDoc,
+   
 updateDoc,
 deleteDoc,
 setDoc,
@@ -220,31 +221,21 @@ appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-fetch("datos/jornada.json")
-.then(r => r.json())
-.then(datos => {
+const configDoc = await getDoc(doc(db,"config","jornada"));
 
-    document.getElementById("tituloAdmin").innerHTML =
-        "⚙️ Configuración de la Jornada<br>" +
-        "<span style='font-size:22px'>JORNADA " +
-        datos.jornada +
-        "</span><br>" +
-        "<span style='font-size:16px'>" +
-        datos.titulo +
-        "</span>";
-   document.getElementById("partidosJornada").value =
-    datos.partidos.map(p => p[0] + " vs " + p[1]).join("\n") +
-    "\n\nPS: " +
-    datos.suplente[0] +
-    " vs " +
-    datos.suplente[1]; 
+if(configDoc.exists()){
+
+    const datos = configDoc.data();
+
     document.getElementById("numeroJornada").value = datos.jornada || "";
 
-document.getElementById("costoJornada").value = datos.costo || "";
+    document.getElementById("costoJornada").value = datos.costo || "";
 
-document.getElementById("estadoJornada").value = datos.estado || "abierta";
+    document.getElementById("estadoJornada").value = datos.estado || "abierta";
 
-});
+    document.getElementById("estadoLista").value = datos.estadoLista || "preliminar";
+
+}
 const btnGuardarJornada = document.getElementById("guardarJornada");
 
 btnGuardarJornada.addEventListener("click", async () => {
