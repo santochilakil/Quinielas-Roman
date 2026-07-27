@@ -858,7 +858,7 @@ if(configDoc.exists()){
 
     document.getElementById("estadoJornada").value = datos.estado || "abierta";
 
-    document.getElementById("estadoLista").value = datos.estadoLista || "preliminar";
+    
 
     document.getElementById("fechaInicio").value = datos.fechaInicio || "";
 
@@ -870,74 +870,78 @@ if(configDoc.exists()){
 
 btnGuardarJornada.addEventListener("click", async () => {
 
-await setDoc(doc(db,"config","jornada"),{
+    const confirmar = confirm("¿Estás seguro de guardar la jornada?");
 
-    jornada: Number(document.getElementById("numeroJornada").value),
+    if (!confirmar) return;
 
-    costo: Number(document.getElementById("costoJornada").value),
+    await setDoc(doc(db,"config","jornada"),{
 
-    estado: document.getElementById("estadoJornada").value,
+        jornada: Number(document.getElementById("numeroJornada").value),
 
-    estadoLista: document.getElementById("estadoLista").value,
+        costo: Number(document.getElementById("costoJornada").value),
 
-    fechaInicio: document.getElementById("fechaInicio").value,
+        estado: document.getElementById("estadoJornada").value,
 
-    fechaFin: document.getElementById("fechaFin").value,
+        fechaInicio: document.getElementById("fechaInicio").value,
 
-    partidos:[
-        {
-            local:document.getElementById("local1").value,
-            visitante:document.getElementById("visitante1").value,
-            resultado:document.getElementById("resultado1").value
-        },
-        {
-            local:document.getElementById("local2").value,
-            visitante:document.getElementById("visitante2").value,
-            resultado:document.getElementById("resultado2").value
-        },
-        {
-            local:document.getElementById("local3").value,
-            visitante:document.getElementById("visitante3").value,
-            resultado:document.getElementById("resultado3").value
-        },
-        {
-            local:document.getElementById("local4").value,
-            visitante:document.getElementById("visitante4").value,
-            resultado:document.getElementById("resultado4").value
-        },
-        {
-            local:document.getElementById("local5").value,
-            visitante:document.getElementById("visitante5").value,
-            resultado:document.getElementById("resultado5").value
-        },
-        {
-            local:document.getElementById("local6").value,
-            visitante:document.getElementById("visitante6").value,
-            resultado:document.getElementById("resultado6").value
-        },
-        {
-            local:document.getElementById("local7").value,
-            visitante:document.getElementById("visitante7").value,
-            resultado:document.getElementById("resultado7").value
-        },
-        {
-            local:document.getElementById("local8").value,
-            visitante:document.getElementById("visitante8").value,
-            resultado:document.getElementById("resultado8").value
-        },
-        {
-            local:document.getElementById("local9").value,
-            visitante:document.getElementById("visitante9").value,
-            resultado:document.getElementById("resultado9").value
-        },
+        fechaFin: document.getElementById("fechaFin").value,
 
-        {
-            local:document.getElementById("localPS").value,
-            visitante:document.getElementById("visitantePS").value,
-            resultado:document.getElementById("resultadoPS").value
-        }
+        partidos:[
+            {
+                local:document.getElementById("local1").value,
+                visitante:document.getElementById("visitante1").value,
+                resultado:document.getElementById("resultado1").value
+            },
+            {
+                local:document.getElementById("local2").value,
+                visitante:document.getElementById("visitante2").value,
+                resultado:document.getElementById("resultado2").value
+            },
+            {
+                local:document.getElementById("local3").value,
+                visitante:document.getElementById("visitante3").value,
+                resultado:document.getElementById("resultado3").value
+            },
+            {
+                local:document.getElementById("local4").value,
+                visitante:document.getElementById("visitante4").value,
+                resultado:document.getElementById("resultado4").value
+            },
+            {
+                local:document.getElementById("local5").value,
+                visitante:document.getElementById("visitante5").value,
+                resultado:document.getElementById("resultado5").value
+            },
+            {
+                local:document.getElementById("local6").value,
+                visitante:document.getElementById("visitante6").value,
+                resultado:document.getElementById("resultado6").value
+            },
+            {
+                local:document.getElementById("local7").value,
+                visitante:document.getElementById("visitante7").value,
+                resultado:document.getElementById("resultado7").value
+            },
+            {
+                local:document.getElementById("local8").value,
+                visitante:document.getElementById("visitante8").value,
+                resultado:document.getElementById("resultado8").value
+            },
+            {
+                local:document.getElementById("local9").value,
+                visitante:document.getElementById("visitante9").value,
+                resultado:document.getElementById("resultado9").value
+            },
+            {
+                local:document.getElementById("localPS").value,
+                visitante:document.getElementById("visitantePS").value,
+                resultado:document.getElementById("resultadoPS").value
+            }
+        ]
 
-    ]
+    });
+
+    alert("✅ Jornada guardada correctamente.");
 
 });
 
