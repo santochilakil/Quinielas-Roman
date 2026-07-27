@@ -858,11 +858,37 @@ if(configDoc.exists()){
 
     document.getElementById("estadoJornada").value = datos.estado || "abierta";
 
-    
-
     document.getElementById("fechaInicio").value = datos.fechaInicio || "";
 
     document.getElementById("fechaFin").value = datos.fechaFin || "";
+
+    if(datos.partidos){
+
+        datos.partidos.forEach((partido, index)=>{
+
+            const n = index + 1;
+
+            if(index < 9){
+
+                document.getElementById("local"+n).value = partido.local || "";
+
+                document.getElementById("visitante"+n).value = partido.visitante || "";
+
+                document.getElementById("resultado"+n).value = partido.resultado || "";
+
+            }else{
+
+                document.getElementById("localPS").value = partido.local || "";
+
+                document.getElementById("visitantePS").value = partido.visitante || "";
+
+                document.getElementById("resultadoPS").value = partido.resultado || "";
+
+            }
+
+        });
+
+    }
 
 }
 
