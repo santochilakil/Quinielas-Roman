@@ -874,8 +874,9 @@ btnGuardarJornada.addEventListener("click", async () => {
 
     if (!confirmar) return;
 
-    await setDoc(doc(db,"config","jornada"),{
+   try{
 
+await setDoc(doc(db,"config","jornada"),{
         jornada: Number(document.getElementById("numeroJornada").value),
 
         costo: Number(document.getElementById("costoJornada").value),
@@ -939,9 +940,17 @@ btnGuardarJornada.addEventListener("click", async () => {
             }
         ]
 
-    });
+   });
 
-    alert("✅ Jornada guardada correctamente.");
+alert("✅ Jornada guardada correctamente.");
+
+}catch(error){
+
+alert(error);
+
+console.error(error);
+
+} 
 
 });
 
