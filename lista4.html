@@ -384,6 +384,25 @@ textoFecha +
 "</span>";  
 
 }
+ const fila = document.getElementById("filaPartidos");
+
+fila.innerHTML = "";
+
+config.partidos.forEach((p,i)=>{
+
+    if(i < 9){
+
+        fila.innerHTML +=
+        `<th class="partido">${p.local} vs ${p.visitante}</th>`;
+
+    }else{
+
+        fila.innerHTML +=
+        `<th class="partido-ps">${p.local} vs ${p.visitante}</th>`;
+
+    }
+
+}); 
   const lista = document.getElementById("listaParticipantes");
   const snapshot = await getDocs(collection(db,"quinielas"));
 let contador = 1;
