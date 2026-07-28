@@ -353,12 +353,11 @@ const db = getFirestore(app);
   let jornada = [];
 let suplente = [];
 
-const configDoc = await getDoc(doc(db,"config","jornada"));
+const jornadaDoc = await getDoc(doc(db,"config","jornada"));
 
-if(configDoc.exists()){
+if(jornadaDoc.exists()){
 
-    const config = configDoc.data();
-
+    const config = jornadaDoc.data();
     document.getElementById("tituloLista").innerHTML =
     "<span style='font-size:38px;color:#FFD700;font-weight:900;text-shadow:2px 2px 4px #000;'>JORNADA " +
     config.jornada +
