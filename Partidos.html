@@ -333,9 +333,10 @@ import {
   getFirestore,
   collection,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
   authDomain: "quinielas-cancun.firebaseapp.com",
@@ -377,17 +378,25 @@ let jornada = [];
 let suplente = [];
 let numeroJornada = 1;
 let telefono = "";
-   fetch("/datos/jornada.json")
-.then(res => res.json())
-.then(data => {
+let COSTO = 0;
+    const jornadaDoc = await getDoc(doc(db,"config","jornada"));
 
-   jornada = data.partidos;
-suplente = data.suplente;
-COSTO = data.costo;
+if (jornadaDoc.exists()) {
+
+    const data = jornadaDoc.data();
+
+    jornada = data.partidos.slice(0,9).map(p => [p.local, p.visitante]);
+
+    suplente = [
+        data.partidos[9].local,
+        data.partidos[9].visitante
+    ];
+
+    COSTO = data.costo;
     numeroJornada = data.jornada;
-telefono = data.telefono;
-const titulo = document.getElementById("tituloJornada");
-if (titulo) {
+
+    const titulo = document.getElementById("tituloJornada");
+
     titulo.innerHTML = `
         <div style="display:flex;flex-direction:column;align-items:center;">
             <div style="display:flex;align-items:center;gap:10px;">
@@ -400,16 +409,15 @@ if (titulo) {
             </div>
 
             <div style="font-size:16px;margin-top:4px;">
-                ${data.titulo}
+                Del ${data.fechaInicio} al ${data.fechaFin}
             </div>
         </div>
     `;
-}   
 
     cargarJornada();
 
-});
-let COSTO = 20;
+}  
+
 
 let quinielas = [];
 let quinielasOriginales = [];
