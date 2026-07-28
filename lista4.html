@@ -358,14 +358,30 @@ const jornadaDoc = await getDoc(doc(db,"config","jornada"));
 if(jornadaDoc.exists()){
 
     const config = jornadaDoc.data();
-    document.getElementById("tituloLista").innerHTML =
-    "<span style='font-size:38px;color:#FFD700;font-weight:900;text-shadow:2px 2px 4px #000;'>JORNADA " +
-    config.jornada +
-    "</span><br><span style='font-size:22px;color:#FFD700;font-weight:bold;text-shadow:2px 2px 4px #000;'>" +
-    config.fechaInicio +
-    " al " +
-    config.fechaFin +
-    "</span>";
+const inicio = new Date(config.fechaInicio + "T00:00:00");
+const fin = new Date(config.fechaFin + "T00:00:00");
+
+const meses = [
+"enero","febrero","marzo","abril","mayo","junio",
+"julio","agosto","septiembre","octubre","noviembre","diciembre"
+];
+
+const textoFecha =
+"Del " +
+inicio.getDate() +
+" de " +
+meses[inicio.getMonth()] +
+" al " +
+fin.getDate() +
+" de " +
+meses[fin.getMonth()];
+
+document.getElementById("tituloLista").innerHTML =
+"<span style='font-size:38px;color:#FFD700;font-weight:900;text-shadow:2px 2px 4px #000;'>JORNADA " +
+config.jornada +
+"</span><br><span style='font-size:22px;color:#FFD700;font-weight:bold;text-shadow:2px 2px 4px #000;'>" +
+textoFecha +
+"</span>";  
 
 }
   const lista = document.getElementById("listaParticipantes");
