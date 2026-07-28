@@ -354,10 +354,10 @@ const db = getFirestore(app);
 let suplente = [];
 
 const jornadaDoc = await getDoc(doc(db,"config","jornada"));
-
+let config = {};
 if(jornadaDoc.exists()){
 
-    const config = jornadaDoc.data();
+   config = jornadaDoc.data(); 
 const inicio = new Date(config.fechaInicio + "T00:00:00");
 const fin = new Date(config.fechaFin + "T00:00:00");
 
