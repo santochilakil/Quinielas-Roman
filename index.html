@@ -107,12 +107,45 @@ PRONOSTICA LOS RESULTADOS Y PARTICIPA POR EL PREMIO
 <h3 id="jornadaTitulo">Cargando...</h3>
 </div>
 <script>
-fetch("datos/jornada.json")
-.then(r => r.json())
-.then(datos => {
-document.getElementById("jornadaTitulo").innerHTML =
-    "JORNADA " + datos.jornada + "<br><span style='font-size:18px'>" + datos.titulo + "</span>";    
-});
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1gDhB37nA5F-zk6-M0hAvZJTGvW6SOBQ",
+  authDomain: "quinielas-cancun.firebaseapp.com",
+  projectId: "quinielas-cancun",
+  storageBucket: "quinielas-cancun.firebasestorage.app",
+  messagingSenderId: "419348494986",
+  appId: "1:419348494986:web:b73e42c52c3f41e19b8b73"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const jornadaDoc = await getDoc(doc(db,"config","jornada"));
+
+if(jornadaDoc.exists()){
+
+    const datos = jornadaDoc.data();
+
+    document.getElementById("jornadaTitulo").innerHTML =
+    "JORNADA " + datos.jornada +
+    "<br><span style='font-size:18px'>Del " +
+    datos.fechaInicio +
+    " al " +
+    datos.fechaFin +
+    "</span>";
+
+}
+
+</script>
 </script>
 </body>
 </html>
