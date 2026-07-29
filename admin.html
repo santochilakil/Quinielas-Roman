@@ -891,7 +891,18 @@ if(configDoc.exists()){
     }
 
 }
-
+[
+"local1","visitante1",
+"local2","visitante2",
+"local3","visitante3",
+"local4","visitante4",
+"local5","visitante5",
+"local6","visitante6",
+"local7","visitante7",
+"local8","visitante8",
+"local9","visitante9",
+"localPS","visitantePS"
+].forEach(llenarSelect);
     const btnGuardarJornada = document.getElementById("guardarJornada");
 
 btnGuardarJornada.addEventListener("click", async () => {
@@ -1223,7 +1234,57 @@ const equipos = [
 "Vancouver Whitecaps"
 ];
 
+function llenarSelect(id){
 
+    const select = document.getElementById(id);
+
+    if(!select) return;
+
+    const valorActual = select.value;
+
+    select.innerHTML = "";
+
+    const opcionInicial = document.createElement("option");
+    opcionInicial.value = "";
+    opcionInicial.textContent = "Selecciona";
+    select.appendChild(opcionInicial);
+
+    equipos.forEach(equipo=>{
+
+        const option = document.createElement("option");
+
+        if(equipo.includes("────")){
+
+            option.textContent = equipo;
+            option.disabled = true;
+
+        }else{
+
+            option.value = equipo;
+            option.textContent = equipo;
+
+        }
+
+        select.appendChild(option);
+
+    });
+
+    select.value = valorActual;
+
+}
+
+[
+"local1","visitante1",
+"local2","visitante2",
+"local3","visitante3",
+"local4","visitante4",
+"local5","visitante5",
+"local6","visitante6",
+"local7","visitante7",
+"local8","visitante8",
+"local9","visitante9",
+"localPS","visitantePS"
+].forEach(llenarSelect);
 </script>
 <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999;">
 
