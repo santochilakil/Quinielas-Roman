@@ -839,6 +839,7 @@ getDoc,
 updateDoc,
 deleteDoc,
 setDoc,
+ writeBatch,
 doc,
 query,
 orderBy
@@ -907,8 +908,44 @@ btnGuardarJornada.addEventListener("click", async () => {
     const confirmar = confirm("¿Estás seguro de guardar la jornada?");
 
     if (!confirmar) return;
+if(document.getElementById("estadoJornada").value=="finalizada"){
 
-   try{
+const confirmarFinal = confirm(
+"⚠️ ¿Seguro que deseas finalizar la jornada?\n\nTodo se borrará para comenzar una nueva quiniela."
+);
+
+if(!confirmarFinal){
+    return;
+}
+const batch = writeBatch(db);
+
+const snapshot = await getDocs(collection(db,"quinielas"));
+
+snapshot.forEach((documento)=>{
+    batch.delete(documento.ref);
+});
+
+await batch.commit();
+}
+if(document.getElementById("estadoJornada").value=="finalizada"){
+
+await setDoc(doc(db,"config","jornada"),{
+    jornada:0,
+costo:0,
+    estado:"abierta",
+    fechaInicio:"",
+    fechaFin:"",
+    partidos:[]
+});
+
+alert("✅ Jornada finalizada.\n\nTodo fue borrado correctamente.");
+
+location.reload();
+
+return;
+
+}   
+ try{
 
 await setDoc(doc(db,"config","jornada"),{
         jornada: Number(document.getElementById("numeroJornada").value),
