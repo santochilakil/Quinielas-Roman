@@ -48,30 +48,62 @@ margin-left:auto;
 margin-right:auto;
 }
 
-.tarjetas{
+.resumenGrid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:8px;
+grid-template-columns:1fr 1fr;
+gap:10px;
+align-items:stretch;
 }
 
+.columnaResumen{
+display:grid;
+grid-template-rows:repeat(4,1fr);
+gap:8px;
+}
 
 .tarjeta{
 background:#FFD700;
 color:#000;
-padding:8px;
 border-radius:10px;
+padding:8px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 text-align:center;
 box-shadow:0 2px 8px rgba(0,0,0,.20);
+min-height:58px;
 }
- .tarjeta h3{
-font-size:12px;
-margin-bottom:2px;
+
+.tarjeta h3{
+font-size:13px;
+margin-bottom:4px;
 color:#000;
+font-weight:bold;
 }
+
 .tarjeta span{
-font-size:18px;
+font-size:24px;
 font-weight:bold;
 color:#000;
+}
+
+.totalPagoGrande{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+min-height:100%;
+}
+
+.totalPagoGrande h3{
+font-size:18px;
+margin-bottom:15px;
+}
+
+.totalPagoGrande span{
+font-size:42px;
+font-weight:900;
 }
 
 .listaPartidos{
@@ -271,27 +303,36 @@ margin:0 10px;
 
 <div class="resumen">
 
-<div class="tarjetas">
+<div class="resumenGrid">
 
-<div class="tarjeta">
-<h3>Quinielas</h3>
-<span id="totalQuinielas">0</span>
-</div>
+    <div class="columnaResumen">
 
-<div class="tarjeta">
-<h3>Dobles</h3>
-<span id="totalDobles">0</span>
-</div>
+        <div class="tarjeta">
+            <h3>Total de quinielas</h3>
+            <span id="totalQuinielas">0</span>
+        </div>
 
-<div class="tarjeta">
-<h3>Triples</h3>
-<span id="totalTriples">0</span>
-</div>
+        <div class="tarjeta">
+            <h3>Total de combinaciones</h3>
+            <span id="totalCombinaciones">0</span>
+        </div>
 
-<div class="tarjeta">
-<h3>Total</h3>
-<span id="totalPago">$0</span>
-</div>
+        <div class="tarjeta">
+            <h3>Dobles</h3>
+            <span id="totalDobles">0</span>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Triples</h3>
+            <span id="totalTriples">0</span>
+        </div>
+
+    </div>
+
+    <div class="tarjeta totalPagoGrande">
+        <h3>Total a pagar</h3>
+        <span id="totalPago">$0</span>
+    </div>
 
 </div>
 
@@ -606,13 +647,15 @@ triples:triples
  function actualizarResumen(){
 
 let totalQuinielas = 0;
-let totalDobles = 0;
+let totalCombinaciones = 0;
+     let totalDobles = 0;
 let totalTriples = 0;
 let totalPago = 0;
 
 quinielasOriginales.forEach(q=>{
 
    totalQuinielas++;
+ totalCombinaciones += q.valor;   
     if(q.dobles > 0){
     totalDobles += q.dobles;
 }
@@ -627,7 +670,8 @@ if(q.triples > 0){
 });
 
 document.getElementById("totalQuinielas").textContent = totalQuinielas;
-document.getElementById("totalDobles").textContent = totalDobles;
+document.getElementById("totalCombinaciones").textContent = totalCombinaciones;
+     document.getElementById("totalDobles").textContent = totalDobles;
 document.getElementById("totalTriples").textContent = totalTriples;
 document.getElementById("totalPago").textContent = "$" + totalPago;
 
