@@ -923,16 +923,15 @@ function llenarSelect(id){
 
         const option = document.createElement("option");
 
-        if(equipo.includes("────")){
-
+     if(equipo.nombre.includes("────")){  
             option.textContent = equipo;
             option.disabled = true;
 
         }else{
 
-            option.value = equipo;
-            option.textContent = equipo;
-
+           
+option.value = equipo.nombre;
+option.textContent = equipo.nombre;
         }
 
         select.appendChild(option);
