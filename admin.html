@@ -385,30 +385,7 @@ style="padding:8px;width:220px;">
 </td>
 </tr>
 
-<tr style="background:#fff8dc;">
-<td>PS</td>
 
-<td>
-<select id="localPS" style="width:95%">
-
-</select>
-</td>
-
-<td>
-<select id="visitantePS" style="width:95%">
-
-</select>
-</td>
-
-<td>
-<select id="resultadoPS">
-<option value="">-</option>
-<option>L</option>
-<option>E</option>
-<option>V</option>
-</select>
-</td>
-</tr>
 
 </tbody>
 </table>
@@ -540,8 +517,7 @@ function cargarTodosLosSelect() {
     llenarSelect("visitante" + i);
   }
 
-  llenarSelect("localPS");
-  llenarSelect("visitantePS");
+  
 }
 
 cargarTodosLosSelect();
@@ -574,15 +550,7 @@ if(configDoc.exists()){
 
                 document.getElementById("resultado"+n).value = partido.resultado || "";
 
-            }else{
-
-                document.getElementById("localPS").value = partido.local || "";
-
-                document.getElementById("visitantePS").value = partido.visitante || "";
-
-                document.getElementById("resultadoPS").value = partido.resultado || "";
-
-            }
+   
 
         });
 
