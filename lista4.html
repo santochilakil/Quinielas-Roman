@@ -502,8 +502,8 @@ function ordenarParticipantes(){
 
     filas.sort((a,b)=>{
 
-        const aciertosA = parseInt(a.cells[11].textContent) || 0;
-        const aciertosB = parseInt(b.cells[11].textContent) || 0;
+      const aciertosA = parseInt(a.cells[10].textContent) || 0;
+const aciertosB = parseInt(b.cells[10].textContent) || 0;
 
         // Mayor número de aciertos primero
         if(aciertosA !== aciertosB){
@@ -529,14 +529,13 @@ filas.forEach(fila=>{
 
     fila.cells[0].textContent = numero++ + " " + nombre;
 
-    const aciertos = parseInt(fila.cells[11].textContent) || 0;
-
+    const aciertos = parseInt(fila.cells[10].textContent) || 0;
     if(aciertos === mayorAciertos){
-        fila.cells[11].style.setProperty("background","#7CFC00","important");
-        fila.cells[11].style.color = "#000";
+       fila.cells[10].style.setProperty("background","#7CFC00","important");
+     fila.cells[10].style.color="#000";
     }else{
-        fila.cells[11].style.setProperty("background","#FFF9C4","important");
-        fila.cells[11].style.color = "#000";
+        fila.cells[10].style.setProperty("background","#FFF9C4","important");
+     fila.cells[10].style.color="#000";
     }
 
     lista.appendChild(fila);
@@ -571,7 +570,7 @@ function actualizarTabla(){
 
         }
 
-        fila.cells[11].textContent=aciertos;
+       fila.cells[10].textContent = aciertos; 
 
     });
 
