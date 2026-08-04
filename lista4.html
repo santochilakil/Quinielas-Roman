@@ -531,7 +531,7 @@ const aciertosB = parseInt(b.cells[10].textContent) || 0;
 const primerLugar = listaAciertos[0];
 const segundoLugar = listaAciertos[1];
 const tercerLugar = listaAciertos[2];
-
+lista.querySelectorAll("tr:not(.fila-resultados)").forEach(f => f.remove());
 filas.forEach(fila=>{
 
     const nombre = fila.cells[0].textContent.replace(/^\d+\s*/,"").trim();
@@ -591,7 +591,9 @@ function actualizarTabla(){
 
     });
 
+   setTimeout(() => {
     ordenarParticipantes();
+}, 10); 
 
 }
 
