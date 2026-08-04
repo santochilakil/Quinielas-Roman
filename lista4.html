@@ -540,19 +540,19 @@ filas.forEach(fila=>{
 
     const aciertos = parseInt(fila.cells[10].textContent) || 0;
    if(aciertos === primerLugar){
-    fila.cells[10].style.setProperty("background","#7CFC00","important");
+   fila.cells[10].style.background = "#7CFC00";
     fila.cells[10].style.color="#000";
 
 }else if(aciertos === segundoLugar){
-    fila.cells[10].style.setProperty("background","#87CEFA");
+    fila.cells[10].style.background = "#87CEFA";
     fila.cells[10].style.color="#000";
 
 }else if(aciertos === tercerLugar){
-    fila.cells[10].style.setProperty("background","#FF6B6B");
+    fila.cells[10].style.background = "#FF6B6B";
     fila.cells[10].style.color="#000";
 
 }else{
-    fila.cells[10].style.setProperty("background","#FFFFFF");
+  fila.cells[10].style.background = "#FFFFFF"; 
     fila.cells[10].style.color="#000";
 }
     lista.appendChild(fila);
