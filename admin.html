@@ -491,7 +491,7 @@ function cargarTodosLosSelect() {
   llenarSelect("visitantePS");
 }
 
-
+cargarTodosLosSelect();
  const configDoc = await getDoc(doc(db,"config","jornada"));
 if(configDoc.exists()){
 
@@ -943,7 +943,7 @@ function llenarSelect(id){
 
 }
 
-cargarTodosLosSelect();
+
 </script> 
 
 <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999;">
