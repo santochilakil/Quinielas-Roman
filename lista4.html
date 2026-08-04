@@ -562,7 +562,8 @@ filas.forEach(fila=>{
 }
 function actualizarTabla(){
 
-    const filas = document.querySelectorAll("#listaParticipantes tr");
+  const filas = Array.from(lista.querySelectorAll("tr"))
+    .filter(f => !f.classList.contains("fila-resultados")); 
 
     filas.forEach((fila, indice)=>{
 
