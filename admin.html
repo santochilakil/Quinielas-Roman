@@ -104,7 +104,7 @@ margin-bottom:20px;
 
 <input
 id="numeroJornada"
-type="number"
+type="text"
 style="width:180px;padding:10px;"
 placeholder="Ej. 1">
 
@@ -606,7 +606,7 @@ return;
  try{
 
 await setDoc(doc(db,"config","jornada"),{
-        jornada: Number(document.getElementById("numeroJornada").value),
+        jornada: document.getElementById("numeroJornada").value,
 
         costo: Number(document.getElementById("costoJornada").value),
 
