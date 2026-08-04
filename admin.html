@@ -481,6 +481,59 @@ appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+ const equipos = [
+"América",
+"Atlas",
+"Atlante",
+"Atlético San Luis",
+"Chivas",
+"Cruz Azul",
+"FC Juárez",
+"León",
+"Monterrey",
+"Necaxa",
+"Pachuca",
+"Puebla",
+"Pumas",
+"Querétaro",
+"Santos",
+"Tigres",
+"Tijuana",
+"Toluca",
+
+"──────── MLS ────────",
+
+"Atlanta United",
+"Austin FC",
+"CF Montréal",
+"Charlotte FC",
+"Chicago Fire",
+"FC Cincinnati",
+"Colorado Rapids",
+"Columbus Crew",
+"D.C. United",
+"FC Dallas",
+"Houston Dynamo",
+"Inter Miami",
+"LA Galaxy",
+"Los Angeles FC",
+"Minnesota United",
+"Nashville SC",
+"New England Revolution",
+"New York City FC",
+"New York Red Bulls",
+"Orlando City",
+"Philadelphia Union",
+"Portland Timbers",
+"Real Salt Lake",
+"San Diego FC",
+"San Jose Earthquakes",
+"Seattle Sounders",
+"Sporting Kansas City",
+"St. Louis City SC",
+"Toronto FC",
+"Vancouver Whitecaps"
+];
 function cargarTodosLosSelect() {
   for (let i = 1; i <= 9; i++) {
     llenarSelect("local" + i);
@@ -494,7 +547,59 @@ function cargarTodosLosSelect() {
 cargarTodosLosSelect();
  const configDoc = await getDoc(doc(db,"config","jornada"));
 if(configDoc.exists()){
+const equipos = [
+"América",
+"Atlas",
+"Atlante",
+"Atlético San Luis",
+"Chivas",
+"Cruz Azul",
+"FC Juárez",
+"León",
+"Monterrey",
+"Necaxa",
+"Pachuca",
+"Puebla",
+"Pumas",
+"Querétaro",
+"Santos",
+"Tigres",
+"Tijuana",
+"Toluca",
 
+"──────── MLS ────────",
+
+"Atlanta United",
+"Austin FC",
+"CF Montréal",
+"Charlotte FC",
+"Chicago Fire",
+"FC Cincinnati",
+"Colorado Rapids",
+"Columbus Crew",
+"D.C. United",
+"FC Dallas",
+"Houston Dynamo",
+"Inter Miami",
+"LA Galaxy",
+"Los Angeles FC",
+"Minnesota United",
+"Nashville SC",
+"New England Revolution",
+"New York City FC",
+"New York Red Bulls",
+"Orlando City",
+"Philadelphia Union",
+"Portland Timbers",
+"Real Salt Lake",
+"San Diego FC",
+"San Jose Earthquakes",
+"Seattle Sounders",
+"Sporting Kansas City",
+"St. Louis City SC",
+"Toronto FC",
+"Vancouver Whitecaps"
+];
     const datos = configDoc.data();
 
     document.getElementById("numeroJornada").value = datos.jornada || "";
@@ -850,59 +955,7 @@ boton.closest("tr").remove();
 }
 
 
-const equipos = [
-"América",
-"Atlas",
-"Atlante",
-"Atlético San Luis",
-"Chivas",
-"Cruz Azul",
-"FC Juárez",
-"León",
-"Monterrey",
-"Necaxa",
-"Pachuca",
-"Puebla",
-"Pumas",
-"Querétaro",
-"Santos",
-"Tigres",
-"Tijuana",
-"Toluca",
 
-"──────── MLS ────────",
-
-"Atlanta United",
-"Austin FC",
-"CF Montréal",
-"Charlotte FC",
-"Chicago Fire",
-"FC Cincinnati",
-"Colorado Rapids",
-"Columbus Crew",
-"D.C. United",
-"FC Dallas",
-"Houston Dynamo",
-"Inter Miami",
-"LA Galaxy",
-"Los Angeles FC",
-"Minnesota United",
-"Nashville SC",
-"New England Revolution",
-"New York City FC",
-"New York Red Bulls",
-"Orlando City",
-"Philadelphia Union",
-"Portland Timbers",
-"Real Salt Lake",
-"San Diego FC",
-"San Jose Earthquakes",
-"Seattle Sounders",
-"Sporting Kansas City",
-"St. Louis City SC",
-"Toronto FC",
-"Vancouver Whitecaps"
-];
 
 function llenarSelect(id){
 
