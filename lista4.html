@@ -519,9 +519,18 @@ const aciertosB = parseInt(b.cells[10].textContent) || 0;
 
     let numero = 1;
 
-  const mayorAciertos = Math.max(
-    ...filas.map(f => parseInt(f.cells[11].textContent) || 0)
+ const mayorAciertos = Math.max(
+    ...filas.map(f => parseInt(f.cells[10].textContent))
 );
+ const listaAciertos = [...new Set(
+    filas
+        .map(f => parseInt(f.cells[10].textContent))
+        .sort((a,b) => b-a)
+)];
+
+const primerLugar = listaAciertos[0];
+const segundoLugar = listaAciertos[1];
+const tercerLugar = listaAciertos[2];
 
 filas.forEach(fila=>{
 
@@ -530,14 +539,22 @@ filas.forEach(fila=>{
     fila.cells[0].textContent = numero++ + " " + nombre;
 
     const aciertos = parseInt(fila.cells[10].textContent) || 0;
-    if(aciertos === mayorAciertos){
-       fila.cells[10].style.setProperty("background","#7CFC00","important");
-     fila.cells[10].style.color="#000";
-    }else{
-        fila.cells[10].style.setProperty("background","#FFF9C4","important");
-     fila.cells[10].style.color="#000";
-    }
+   if(aciertos === primerLugar){
+    fila.cells[10].style.setProperty("background","#7CFC00");
+    fila.cells[10].style.color="#000";
 
+}else if(aciertos === segundoLugar){
+    fila.cells[10].style.setProperty("background","#87CEFA");
+    fila.cells[10].style.color="#000";
+
+}else if(aciertos === tercerLugar){
+    fila.cells[10].style.setProperty("background","#FF6B6B");
+    fila.cells[10].style.color="#000";
+
+}else{
+    fila.cells[10].style.setProperty("background","#FFFFFF");
+    fila.cells[10].style.color="#000";
+}
     lista.appendChild(fila);
 
 });  
