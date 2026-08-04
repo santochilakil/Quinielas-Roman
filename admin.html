@@ -923,15 +923,16 @@ function llenarSelect(id){
 
         const option = document.createElement("option");
 
-     if(equipo.nombre.includes("────")){  
+        if(equipo.includes("────")){
+
             option.textContent = equipo;
             option.disabled = true;
 
         }else{
 
-           
-option.value = equipo.nombre;
-option.textContent = equipo.nombre;
+            option.value = equipo;
+            option.textContent = equipo;
+
         }
 
         select.appendChild(option);
@@ -943,7 +944,8 @@ option.textContent = equipo.nombre;
 }
 
 cargarTodosLosSelect();
-</script>
+</script> 
+
 <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999;">
 
 <div style="background:white;width:90%;max-width:500px;margin:40px auto;padding:20px;border-radius:15px;max-height:80%;overflow:auto;">
