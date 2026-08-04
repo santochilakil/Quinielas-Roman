@@ -453,8 +453,10 @@ if (jornadaDoc.exists()) {
 
     const data = jornadaDoc.data();
 
-    jornada = data.partidos.slice(0,9).map(p => [p.local, p.visitante]);
-
+   jornada = data.partidos.slice(0,9).map(p => [
+    p.local.trim(),
+    p.visitante.trim()
+]);
     suplente = [
         data.partidos[9].local,
         data.partidos[9].visitante
