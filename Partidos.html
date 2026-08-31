@@ -581,7 +581,7 @@ function activarBotones(){
                 boton.classList.toggle("activa");
 
             }
-
+actualizarResumen();
             // Mostrar recordatorio solo la primera vez
             const nombre = localStorage.getItem("nombre") || "Sin nombre";
             const claveRecordatorio = "recordatorioDobles_" + nombre;
@@ -713,38 +713,62 @@ triples:triples
 };
 
 }
- function actualizarResumen(){
+
+    function actualizarResumen(){
 
 let totalQuinielas = 0;
 let totalCombinaciones = 0;
-     let totalDobles = 0;
+let totalDobles = 0;
 let totalTriples = 0;
 let totalPago = 0;
 
 quinielasOriginales.forEach(q=>{
 
-   totalQuinielas++;
- totalCombinaciones += q.valor;   
-    if(q.dobles > 0){
-    totalDobles += q.dobles;
+totalQuinielas++;
+totalCombinaciones += q.valor;
+
+if(q.dobles > 0){
+totalDobles += q.dobles;
 }
 
 if(q.triples > 0){
-    totalTriples += q.triples;
+totalTriples += q.triples;
 }
 
-    // Cada quiniela paga según sus propias combinaciones
-    totalPago += q.valor * COSTO;
+totalPago += q.valor * COSTO;
 
 });
 
+// Si los 9 partidos están completos,
+// agregar temporalmente el costo de la quiniela que se está armando
+let completa = true;
+
+for(let i=1;i<=9;i++){
+
+const seleccion = obtenerSeleccion(i);
+
+if(seleccion==""){
+completa = false;
+break;
+}
+
+}
+
+if(completa){
+
+const actual = calcularQuiniela();
+
+totalPago += actual.valor * COSTO;
+
+}
+
 document.getElementById("totalQuinielas").textContent = totalQuinielas;
 document.getElementById("totalCombinaciones").textContent = totalCombinaciones;
-     document.getElementById("totalDobles").textContent = totalDobles;
+document.getElementById("totalDobles").textContent = totalDobles;
 document.getElementById("totalTriples").textContent = totalTriples;
 document.getElementById("totalPago").textContent = "$" + totalPago;
 
-} 
+}
 function limpiarSeleccion(){
 
 document.querySelectorAll(".opcion.activa").forEach(op=>{
