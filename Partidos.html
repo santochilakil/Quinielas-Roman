@@ -291,6 +291,45 @@ object-fit:contain;
 vertical-align:middle;
 margin:0 10px;
 }
+.recordatorioDobles {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 40px);
+    max-width: 360px;
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    text-align: center;
+    z-index: 1000;
+}
+
+.recordatorioDobles h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #003366;
+}
+
+.recordatorioDobles p {
+    margin-bottom: 18px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.recordatorioDobles button {
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}    
 </style>
 
 </head>
@@ -300,7 +339,12 @@ margin:0 10px;
     <img src="Logo.png" class="logoTitulo">
     QUINIELAS CANCÚN
 </h1>
-
+<div id="recordatorioDobles" class="recordatorioDobles">
+    <h3>💡 Recuerda</h3>
+    <p>Recuerda que puedes hacer <b>dobles y triples</b>.<br>
+    Esto te da más posibilidades de ganar.</p>
+    <button id="continuarSeleccion">Continuar selección</button>
+</div>
 <div class="resumen">
 
 <div class="resumenGrid">
@@ -518,31 +562,57 @@ estado:"Pendiente"
 
 function activarBotones(){
 
-const botones=document.querySelectorAll(".opcion");
+    const botones = document.querySelectorAll(".opcion");
 
-botones.forEach(boton=>{
+    botones.forEach(boton=>{
 
-boton.addEventListener("click",()=>{
+        boton.addEventListener("click",()=>{
 
-if(boton.dataset.partido=="10"){
+            if(boton.dataset.partido=="10"){
 
-document.querySelectorAll('.opcion[data-partido="10"]').forEach(op=>{
+                document.querySelectorAll('.opcion[data-partido="10"]').forEach(op=>{
+                    op.classList.remove("activa");
+                });
 
-op.classList.remove("activa");
+                boton.classList.add("activa");
 
-});
+            }else{
 
-boton.classList.add("activa");
+                boton.classList.toggle("activa");
 
-}else{
+            }
 
-boton.classList.toggle("activa");
+            // Mostrar recordatorio solo la primera vez
+            const nombre = localStorage.getItem("nombre") || "Sin nombre";
+            const claveRecordatorio = "recordatorioDobles_" + nombre;
 
-}
+            if(!localStorage.getItem(claveRecordatorio)){
 
-});
+                const recordatorio = document.getElementById("recordatorioDobles");
 
-});
+                if(recordatorio){
+                    recordatorio.style.display = "block";
+                }
+
+                const continuar = document.getElementById("continuarSeleccion");
+
+                if(continuar){
+
+                    continuar.onclick = function(){
+
+                        recordatorio.style.display = "none";
+
+                        localStorage.setItem(claveRecordatorio, "visto");
+
+                    };
+
+                }
+
+            }
+
+        });
+
+    });
 
 }
  function cargarJornada(){
