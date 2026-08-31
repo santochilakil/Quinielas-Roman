@@ -714,7 +714,7 @@ triples:triples
 
 }
 
-    function actualizarResumen(){
+function actualizarResumen(){
 
 let totalQuinielas = 0;
 let totalCombinaciones = 0;
@@ -722,53 +722,61 @@ let totalDobles = 0;
 let totalTriples = 0;
 let totalPago = 0;
 
+// Primero contamos solamente las quinielas YA AGREGADAS
 quinielasOriginales.forEach(q=>{
 
-totalQuinielas++;
-totalCombinaciones += q.valor;
+    totalQuinielas++;
 
-if(q.dobles > 0){
-totalDobles += q.dobles;
-}
+    totalCombinaciones += q.valor;
+    totalDobles += q.dobles;
+    totalTriples += q.triples;
 
-if(q.triples > 0){
-totalTriples += q.triples;
-}
-
-totalPago += q.valor * COSTO;
+    totalPago += q.valor * COSTO;
 
 });
 
-// Si los 9 partidos están completos,
-// agregar temporalmente el costo de la quiniela que se está armando
+// Revisar si la quiniela que se está haciendo
+// ya tiene los 9 partidos seleccionados
 let completa = true;
 
-for(let i=1;i<=9;i++){
+for(let i=1; i<=9; i++){
 
-const seleccion = obtenerSeleccion(i);
+    const seleccion = obtenerSeleccion(i);
 
-if(seleccion==""){
-completa = false;
-break;
+    if(seleccion==""){
+        completa = false;
+        break;
+    }
+
 }
 
-}
-
+// Si ya están completos los 9 partidos,
+// mostrar temporalmente sus datos
+// SIN aumentar Total de quinielas
 if(completa){
 
-const actual = calcularQuiniela();
+    const actual = calcularQuiniela();
 
-totalPago += actual.valor * COSTO;
+    totalCombinaciones += actual.valor;
+    totalDobles += actual.dobles;
+    totalTriples += actual.triples;
+
+    totalPago += actual.valor * COSTO;
 
 }
 
 document.getElementById("totalQuinielas").textContent = totalQuinielas;
+
 document.getElementById("totalCombinaciones").textContent = totalCombinaciones;
+
 document.getElementById("totalDobles").textContent = totalDobles;
+
 document.getElementById("totalTriples").textContent = totalTriples;
+
 document.getElementById("totalPago").textContent = "$" + totalPago;
 
 }
+    
 function limpiarSeleccion(){
 
 document.querySelectorAll(".opcion.activa").forEach(op=>{
