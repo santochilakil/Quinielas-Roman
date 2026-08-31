@@ -911,7 +911,44 @@ window.eliminarQuiniela = function(indice){
         return;
     }
 
-    quinielas.splice(indice,1);
+    // Eliminar la quiniela original
+    quinielasOriginales.splice(indice,1);
+
+    // Reconstruir las combinaciones de las quinielas que quedan
+    quinielas = [];
+
+    quinielasOriginales.forEach(q => {
+
+        const jugadas = q.jugadas;
+
+        function generar(indicePartido, actual){
+
+            if(indicePartido === jugadas.length){
+
+                quinielas.push({
+                    jugadas:[...actual],
+                    valor:1,
+                    dobles:q.dobles,
+                    triples:q.triples
+                });
+
+                return;
+            }
+
+            const opciones = jugadas[indicePartido];
+
+            for(const letra of opciones){
+
+                actual.push(letra);
+
+                generar(indicePartido + 1, actual);
+
+                actual.pop();
+            }
+        }
+
+        generar(0, []);
+    });
 
     mostrarQuinielas();
 
