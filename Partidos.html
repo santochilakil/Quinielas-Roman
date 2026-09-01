@@ -742,35 +742,31 @@ function actualizarResumen(){
 
     });
 
-    // Si todavía no hay ninguna quiniela agregada,
-    // mostrar temporalmente la selección actual
-    if(quinielasOriginales.length === 0){
+    // Mostrar también la quiniela que se está armando
+let completa = true;
 
-        let completa = true;
+for(let i = 1; i <= 9; i++){
 
-        for(let i = 1; i <= 9; i++){
+    const seleccion = obtenerSeleccion(i);
 
-            const seleccion = obtenerSeleccion(i);
-
-            if(seleccion === ""){
-                completa = false;
-                break;
-            }
-
-        }
-
-        if(completa){
-
-            const actual = calcularQuiniela();
-
-            totalCombinaciones = actual.valor;
-            totalDobles = actual.dobles;
-            totalTriples = actual.triples;
-            totalPago = actual.valor * COSTO;
-
-        }
-
+    if(seleccion === ""){
+        completa = false;
+        break;
     }
+
+}
+
+if(completa){
+
+    const actual = calcularQuiniela();
+
+    totalQuinielas += 1;
+    totalCombinaciones += actual.valor;
+    totalDobles += actual.dobles;
+    totalTriples += actual.triples;
+    totalPago += actual.valor * COSTO;
+
+}
 
     document.getElementById("totalQuinielas").textContent = totalQuinielas;
 
