@@ -458,13 +458,7 @@ appId:"1:419348494986:web:b73e42c52c3f41e19b8b73"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function cargarTodosLosSelect() {
-  for (let i = 1; i <= 9; i++) {
-    llenarSelect("local" + i);
-    llenarSelect("visitante" + i);
-  }
-
- const equipos = [
+const equipos = [
 
   // ===== LIGA MX =====
   "América",
@@ -560,9 +554,19 @@ function cargarTodosLosSelect() {
   "Corea del Norte",
   "Bélgica",
   "España"
-]; 
-}
+];
 
+
+function cargarTodosLosSelect() {
+
+  for (let i = 1; i <= 9; i++) {
+
+    llenarSelect("local" + i);
+    llenarSelect("visitante" + i);
+
+  }
+
+}
 cargarTodosLosSelect();
  const configDoc = await getDoc(doc(db,"config","jornada"));
 if(configDoc.exists()){
